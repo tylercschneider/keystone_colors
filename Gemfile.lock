@@ -1,5 +1,7 @@
-PATH
-  remote: ../keystone_ui
+GIT
+  remote: https://github.com/tylercschneider/keystone_ui.git
+  revision: 66eb20d96d84c28f829481498b94ef7befbccc5b
+  branch: main
   specs:
     keystone_ui (0.4.1)
       view_component (>= 2.0)

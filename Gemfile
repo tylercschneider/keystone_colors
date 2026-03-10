@@ -2,6 +2,6 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "keystone_ui", path: "../keystone_ui"
+gem "keystone_ui", github: "tylercschneider/keystone_ui", branch: "main"
 gem "rake"
 gem "rspec"
