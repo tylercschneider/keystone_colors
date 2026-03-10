@@ -11,5 +11,6 @@ RSpec.describe KeystoneColors::Configuration do
     expect(config.owner_class_name).to eq("User")
     expect(config.current_owner_method).to eq(:current_user)
     expect(config.default_template).to eq(:ocean)
+    expect(config.layout).to eq("application")
   end
 end
