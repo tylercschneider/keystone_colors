@@ -3,6 +3,6 @@
 module KeystoneColors
   class ApplicationController < ::ApplicationController
     helper KeystoneUiHelper
-    helper MainAppRoutesHelper
+    helper Rails.application.routes.url_helpers
   end
 end
