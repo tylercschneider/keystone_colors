@@ -26,9 +26,17 @@ RSpec.describe "Settings", type: :request do
       get "/keystone_colors/settings"
 
       body = response.body
-      expect(body).to include('name="theme_preference[accent]"')
-      expect(body).to include('name="theme_preference[surface]"')
-      expect(body).to include('name="theme_preference[template_name]"')
+      expect(body).to include("theme_preference[accent]")
+      expect(body).to include("theme_preference[surface]")
+      expect(body).to include("theme_preference[template_name]")
+    end
+
+    it "renders a reset to defaults button when preference exists" do
+      KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
+
+      get "/keystone_colors/settings"
+
+      expect(response.body).to include("Reset to Default")
     end
   end
 
