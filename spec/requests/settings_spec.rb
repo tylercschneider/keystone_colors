@@ -21,6 +21,15 @@ RSpec.describe "Settings", type: :request do
 
       expect(response).to have_http_status(:ok)
     end
+
+    it "renders a form with accent, surface, and template fields" do
+      get "/keystone_colors/settings"
+
+      body = response.body
+      expect(body).to include('name="theme_preference[accent]"')
+      expect(body).to include('name="theme_preference[surface]"')
+      expect(body).to include('name="theme_preference[template_name]"')
+    end
   end
 
   describe "PATCH /keystone_colors/settings" do
