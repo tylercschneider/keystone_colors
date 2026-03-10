@@ -22,13 +22,14 @@ RSpec.describe "Settings", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "renders a form with accent, surface, and template fields" do
+    it "renders color swatches for accents and surfaces" do
       get "/keystone_colors"
 
       body = response.body
-      expect(body).to include("theme_preference[accent]")
-      expect(body).to include("theme_preference[surface]")
-      expect(body).to include("theme_preference[template_name]")
+      expect(body).to include("bg-blue-500")
+      expect(body).to include("bg-emerald-500")
+      expect(body).to include("bg-zinc-200")
+      expect(body).to include("bg-slate-200")
     end
 
     it "renders a reset to defaults button when preference exists" do

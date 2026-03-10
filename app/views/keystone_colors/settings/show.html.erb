@@ -1,5 +1,24 @@
 <%= ui_page_header(title: "Color Settings") %>
 
+<%
+  accent_colors = {
+    "blue" => "bg-blue-500",
+    "emerald" => "bg-emerald-500",
+    "cyan" => "bg-cyan-500",
+    "indigo" => "bg-indigo-500",
+    "violet" => "bg-violet-500",
+    "rose" => "bg-rose-500"
+  }
+
+  surface_colors = {
+    "zinc" => "bg-zinc-200 dark:bg-zinc-700",
+    "slate" => "bg-slate-200 dark:bg-slate-700",
+    "gray" => "bg-gray-200 dark:bg-gray-700",
+    "neutral" => "bg-neutral-200 dark:bg-neutral-700",
+    "stone" => "bg-stone-200 dark:bg-stone-700"
+  }
+%>
+
 <%= ui_panel(padding: :lg) do %>
   <%= form_with(
     url: root_path,
@@ -7,35 +26,55 @@
     scope: :theme_preference,
     local: true
   ) do |form| %>
-    <div class="space-y-6">
+    <div class="space-y-8">
       <div>
-        <%= ui_select(
-          name: "theme_preference[template_name]",
-          options: KeystoneColors::Templates.names.map { |n|
-            [KeystoneColors::Templates[n][:label], n]
-          },
-          selected: @preference.template_name,
-          include_blank: "Custom"
-        ) %>
+        <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Theme Preset</h3>
+        <div class="flex flex-wrap gap-2">
+          <% KeystoneColors::Templates.names.each do |name| %>
+            <% template = KeystoneColors::Templates[name] %>
+            <label class="cursor-pointer">
+              <input type="radio" name="theme_preference[template_name]" value="<%= name %>"
+                <%= "checked" if @preference.template_name == name.to_s %>
+                class="peer sr-only">
+              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
+                <span class="w-4 h-4 rounded-full <%= accent_colors[template[:accent].to_s] %>"></span>
+                <span class="w-4 h-4 rounded <%= surface_colors[template[:surface].to_s]&.split&.first %>"></span>
+                <span class="text-sm text-gray-700 dark:text-gray-300"><%= template[:label] %></span>
+              </span>
+            </label>
+          <% end %>
+        </div>
       </div>
 
       <div>
-        <%= ui_select(
-          name: "theme_preference[accent]",
-          options: KeystoneColors::ThemePreference::SUPPORTED_ACCENTS.map { |a| [a.capitalize, a] },
-          selected: @preference.accent
-        ) %>
+        <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Accent Color</h3>
+        <div class="flex flex-wrap gap-3">
+          <% accent_colors.each do |name, bg_class| %>
+            <label class="cursor-pointer" title="<%= name.capitalize %>">
+              <input type="radio" name="theme_preference[accent]" value="<%= name %>"
+                <%= "checked" if @preference.accent == name %>
+                class="peer sr-only">
+              <span class="block w-10 h-10 rounded-full <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
+            </label>
+          <% end %>
+        </div>
       </div>
 
       <div>
-        <%= ui_select(
-          name: "theme_preference[surface]",
-          options: KeystoneColors::ThemePreference::SUPPORTED_SURFACES.map { |s| [s.capitalize, s] },
-          selected: @preference.surface
-        ) %>
+        <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Surface</h3>
+        <div class="flex flex-wrap gap-3">
+          <% surface_colors.each do |name, bg_class| %>
+            <label class="cursor-pointer" title="<%= name.capitalize %>">
+              <input type="radio" name="theme_preference[surface]" value="<%= name %>"
+                <%= "checked" if @preference.surface == name %>
+                class="peer sr-only">
+              <span class="block w-10 h-10 rounded-lg <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
+            </label>
+          <% end %>
+        </div>
       </div>
 
-      <div>
+      <div class="flex items-center gap-3">
         <%= ui_button(label: "Save", type: :submit) %>
       </div>
     </div>
