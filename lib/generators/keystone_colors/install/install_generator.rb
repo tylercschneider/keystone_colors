@@ -19,6 +19,13 @@ module KeystoneColors
         )
       end
 
+      def copy_stimulus_controller
+        copy_file(
+          File.expand_path("../../../../app/javascript/keystone_colors/theme_settings_controller.js", __dir__),
+          "app/javascript/controllers/keystone_colors/theme_settings_controller.js"
+        )
+      end
+
       def show_instructions
         say ""
         say "KeystoneColors installed! Next steps:", :green

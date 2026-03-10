@@ -6,12 +6,12 @@ RSpec.describe KeystoneColors::Templates do
   SUPPORTED_ACCENTS = %i[blue emerald cyan indigo violet rose].freeze
   SUPPORTED_SURFACES = %i[zinc slate gray neutral stone].freeze
 
-  it "provides exactly 5 preset templates" do
-    expect(described_class.names.size).to eq(5)
+  it "provides exactly 6 preset templates" do
+    expect(described_class.names.size).to eq(6)
   end
 
   it "exposes all template names" do
-    expect(described_class.names).to contain_exactly(:ocean, :forest, :twilight, :coral, :arctic)
+    expect(described_class.names).to contain_exactly(:default, :ocean, :forest, :twilight, :coral, :arctic)
   end
 
   described_class.all.each do |name, template|

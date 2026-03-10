@@ -28,8 +28,8 @@ RSpec.describe "Settings", type: :request do
       body = response.body
       expect(body).to include("bg-blue-500")
       expect(body).to include("bg-emerald-500")
-      expect(body).to include("bg-zinc-200")
-      expect(body).to include("bg-slate-200")
+      expect(body).to include("bg-zinc-500")
+      expect(body).to include("bg-slate-500")
     end
 
     it "renders a reset to defaults button when preference exists" do

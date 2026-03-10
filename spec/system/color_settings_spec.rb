@@ -23,9 +23,22 @@ RSpec.describe "Color settings", type: :feature do
     choose("theme_preference[surface]", option: "slate")
     click_button "Save"
 
+    expect(page).to have_text("Color settings updated.")
     pref = user.reload.theme_preference
     expect(pref.accent).to eq("rose")
     expect(pref.surface).to eq("slate")
+  end
+
+  it "selects the default theme preset and saves" do
+    visit "/keystone_colors"
+
+    choose("theme_preference[template_name]", option: "default")
+    click_button "Save"
+
+    pref = user.reload.theme_preference
+    expect(pref.accent).to eq("blue")
+    expect(pref.surface).to eq("zinc")
+    expect(pref.template_name).to eq("default")
   end
 
   it "selects a theme preset and saves" do
@@ -49,6 +62,7 @@ RSpec.describe "Color settings", type: :feature do
     choose("theme_preference[surface]", option: "neutral")
     click_button "Save"
 
+    expect(page).to have_text("Color settings updated.")
     pref = user.reload.theme_preference
     expect(pref.accent).to eq("violet")
     expect(pref.surface).to eq("neutral")
@@ -61,6 +75,7 @@ RSpec.describe "Color settings", type: :feature do
 
     click_button "Reset to Default"
 
+    expect(page).to have_text("Color settings reset to default.")
     expect(user.reload.theme_preference).to be_nil
   end
 end
