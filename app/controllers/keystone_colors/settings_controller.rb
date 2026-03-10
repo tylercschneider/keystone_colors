@@ -8,7 +8,7 @@ module KeystoneColors
 
     def destroy
       ThemePreference.find_by(owner: current_owner)&.destroy
-      redirect_to engine_root_path
+      redirect_to engine_root_path, notice: "Color settings reset to default."
     end
 
     def update
@@ -26,7 +26,7 @@ module KeystoneColors
       end
 
       if @preference.save
-        redirect_to engine_root_path
+        redirect_to engine_root_path, notice: "Color settings updated."
       else
         render :show, status: :unprocessable_entity
       end

@@ -3,6 +3,12 @@
 module KeystoneColors
   module Templates
     PRESETS = {
+      default: {
+        accent: :blue,
+        surface: :zinc,
+        label: "Default",
+        description: "Blue accent with zinc surfaces"
+      },
       ocean: {
         accent: :blue,
         surface: :slate,
