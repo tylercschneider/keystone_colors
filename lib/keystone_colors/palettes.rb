@@ -19,6 +19,12 @@ module KeystoneColors
       stone: { 50 => "#fafaf9", 100 => "#f5f5f4", 200 => "#e7e5e4", 300 => "#d6d3d1", 400 => "#a8a29e", 500 => "#78716c", 600 => "#57534e", 700 => "#44403c", 800 => "#292524", 900 => "#1c1917" }
     }.freeze
 
+    # Shade lightness targets (0.0 = black, 1.0 = white)
+    SHADE_TARGETS = {
+      50 => 0.95, 100 => 0.9, 200 => 0.8, 300 => 0.7, 400 => 0.6,
+      500 => 0.0, 600 => -0.15, 700 => -0.3, 800 => -0.45, 900 => -0.6
+    }.freeze
+
     def self.accent(name)
       ACCENTS.fetch(name.to_sym)
     end
@@ -26,5 +32,39 @@ module KeystoneColors
     def self.surface(name)
       SURFACES.fetch(name.to_sym)
     end
+
+    def self.generate_shades(hex)
+      r, g, b = hex_to_rgb(hex)
+
+      SHADE_TARGETS.each_with_object({}) do |(shade, factor), result|
+        if shade == 500
+          result[shade] = hex
+        elsif factor > 0
+          result[shade] = rgb_to_hex(mix(r, g, b, 255, 255, 255, factor))
+        else
+          result[shade] = rgb_to_hex(mix(r, g, b, 0, 0, 0, factor.abs))
+        end
+      end
+    end
+
+    def self.hex_to_rgb(hex)
+      hex = hex.delete_prefix("#")
+      [hex[0..1], hex[2..3], hex[4..5]].map { |c| c.to_i(16) }
+    end
+    private_class_method :hex_to_rgb
+
+    def self.rgb_to_hex(rgb)
+      "#" + rgb.map { |c| c.clamp(0, 255).round.to_s(16).rjust(2, "0") }.join
+    end
+    private_class_method :rgb_to_hex
+
+    def self.mix(r1, g1, b1, r2, g2, b2, weight)
+      [
+        r1 + (r2 - r1) * weight,
+        g1 + (g2 - g1) * weight,
+        b1 + (b2 - b1) * weight
+      ]
+    end
+    private_class_method :mix
   end
 end

@@ -35,14 +35,22 @@ module KeystoneColors
     private
 
     def build_palette_css(accent, surface)
-      accent_shades = KeystoneColors::Palettes.accent(accent)
-      surface_shades = KeystoneColors::Palettes.surface(surface)
+      accent_shades = resolve_shades(accent, :accent)
+      surface_shades = resolve_shades(surface, :surface)
 
       lines = []
       accent_shades.each { |shade, hex| lines << "  --color-accent-#{shade}: #{hex};" }
       surface_shades.each { |shade, hex| lines << "  --color-surface-#{shade}: #{hex};" }
 
       @keystone_palette_css = ":root {\n#{lines.join("\n")}\n}"
+    end
+
+    def resolve_shades(value, type)
+      if value&.start_with?("#")
+        KeystoneColors::Palettes.generate_shades(value)
+      else
+        type == :accent ? KeystoneColors::Palettes.accent(value) : KeystoneColors::Palettes.surface(value)
+      end
     end
 
     def stale_cache?(owner, cached)

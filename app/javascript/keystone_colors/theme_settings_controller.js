@@ -1,20 +1,29 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["accent", "surface"]
+  static targets = ["accentPicker", "surfacePicker", "accentLabel", "surfaceLabel", "customRadio"]
 
   selectTemplate(event) {
-    const accent = event.currentTarget.dataset.accent
-    const surface = event.currentTarget.dataset.surface
+    const accentHex = event.currentTarget.dataset.accentHex
+    const surfaceHex = event.currentTarget.dataset.surfaceHex
 
-    this.checkRadio(this.accentTargets, accent)
-    this.checkRadio(this.surfaceTargets, surface)
+    if (this.hasAccentPickerTarget) {
+      this.accentPickerTarget.value = accentHex
+      this.accentPickerTarget.name = "theme_preference[accent]"
+    }
+    if (this.hasSurfacePickerTarget) {
+      this.surfacePickerTarget.value = surfaceHex
+      this.surfacePickerTarget.name = "theme_preference[surface]"
+    }
+    if (this.hasAccentLabelTarget) this.accentLabelTarget.textContent = accentHex
+    if (this.hasSurfaceLabelTarget) this.surfaceLabelTarget.textContent = surfaceHex
   }
 
-  checkRadio(targets, value) {
-    targets.forEach(radio => {
-      radio.checked = radio.value === value
-      radio.dispatchEvent(new Event("change", { bubbles: true }))
-    })
+  customColorChanged() {
+    if (this.hasCustomRadioTarget) {
+      this.customRadioTarget.checked = true
+    }
+    if (this.hasAccentLabelTarget) this.accentLabelTarget.textContent = this.accentPickerTarget.value
+    if (this.hasSurfaceLabelTarget) this.surfaceLabelTarget.textContent = this.surfacePickerTarget.value
   }
 }

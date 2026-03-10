@@ -44,14 +44,14 @@ RSpec.describe KeystoneColors::ThemePreference do
     pref = described_class.new(owner: user, accent: "neon", surface: "slate")
 
     expect(pref).not_to be_valid
-    expect(pref.errors[:accent]).to include(/is not included/)
+    expect(pref.errors[:accent]).to include(/must be a supported color name or hex value/)
   end
 
   it "validates surface is a supported value" do
     pref = described_class.new(owner: user, accent: "blue", surface: "marble")
 
     expect(pref).not_to be_valid
-    expect(pref.errors[:surface]).to include(/is not included/)
+    expect(pref.errors[:surface]).to include(/must be a supported color name or hex value/)
   end
 
   it "validates template_name is a known template when present" do
