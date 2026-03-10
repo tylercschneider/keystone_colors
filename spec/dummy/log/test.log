@@ -1,0 +1,581 @@
+  [1m[35m (2.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:33:42.767754', '2026-03-10 13:33:42.767757') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:33:42 -0400
+  
+ActionController::RoutingError (No route matches [GET] "/keystone_colors/settings"):
+  
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:01.337549', '2026-03-10 13:34:01.337551') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:01 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  
+NameError (uninitialized constant KeystoneColors::ThemePreference::Templates):
+  
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:15:in '<class:ThemePreference>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:4:in '<module:KeystoneColors>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:3:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'Kernel.require'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'block (2 levels) in Kernel#replace_require'
+zeitwerk (2.7.5) lib/zeitwerk/core_ext/kernel.rb:26:in 'Kernel#require'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:16:in 'KeystoneColors::SettingsController#theme_preference'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:6:in 'KeystoneColors::SettingsController#show'
+actionpack (8.1.2) lib/action_controller/metal/basic_implicit_render.rb:8:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:221:in 'AbstractController::Base#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rendering.rb:199:in 'ActionController::Rendering#process_action'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:267:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.1.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Kernel#public_send'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Rails::Railtie.method_missing'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:33:in 'block in <class:Constraints>'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:62:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:92:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.5) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.5) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.5) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.5) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.5) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.5) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.5) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+rack-test (2.2.0) lib/rack/test.rb:360:in 'Rack::Test::Session#process_request'
+rack-test (2.2.0) lib/rack/test.rb:153:in 'Rack::Test::Session#request'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:297:in 'ActionDispatch::Integration::Session#process'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:19:in 'ActionDispatch::Integration::RequestHelpers#get'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:388:in 'ActionDispatch::Integration::Runner#get'
+/Users/dyb/projects/keystone_colors/spec/requests/settings_spec.rb:19:in 'block (3 levels) in <top (required)>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'block in RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'block in RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'block in RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'block in RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:626:in 'block in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-rails (8.0.3) lib/rspec/rails/adapters.rb:75:in 'block (2 levels) in <module:MinitestLifecycleAdapter>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'RSpec::Core::Example#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:390:in 'RSpec::Core::Hooks::AroundHook#execute_with'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:628:in 'block (2 levels) in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:629:in 'RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:259:in 'RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:653:in 'block in RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:614:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'block in RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (3 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (2 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/configuration.rb:2097:in 'RSpec::Core::Configuration#with_suite_hooks'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:116:in 'block in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/reporter.rb:74:in 'RSpec::Core::Reporter#report'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:115:in 'RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:89:in 'RSpec::Core::Runner#run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:71:in 'RSpec::Core::Runner.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:45:in 'RSpec::Core::Runner.invoke'
+rspec-core (3.13.6) exe/rspec:4:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in '<top (required)>'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Kernel.load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Bundler::CLI::Exec#kernel_load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:23:in 'Bundler::CLI::Exec#run'
+bundler (2.7.1) lib/bundler/cli.rb:451:in 'Bundler::CLI#exec'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/command.rb:28:in 'Bundler::Thor::Command#run'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in 'Bundler::Thor::Invocation#invoke_command'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor.rb:538:in 'Bundler::Thor.dispatch'
+bundler (2.7.1) lib/bundler/cli.rb:35:in 'Bundler::CLI.dispatch'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/base.rb:584:in 'Bundler::Thor::Base::ClassMethods#start'
+bundler (2.7.1) lib/bundler/cli.rb:29:in 'Bundler::CLI.start'
+bundler (2.7.1) exe/bundle:28:in 'block in <top (required)>'
+bundler (2.7.1) lib/bundler/friendly_errors.rb:118:in 'Bundler.with_friendly_errors'
+bundler (2.7.1) exe/bundle:20:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in '<main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:07.130515', '2026-03-10 13:34:07.130517') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:07 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  
+NameError (uninitialized constant KeystoneColors::ThemePreference::Templates):
+  
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:15:in '<class:ThemePreference>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:4:in '<module:KeystoneColors>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:3:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'Kernel.require'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'block (2 levels) in Kernel#replace_require'
+zeitwerk (2.7.5) lib/zeitwerk/core_ext/kernel.rb:26:in 'Kernel#require'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:16:in 'KeystoneColors::SettingsController#theme_preference'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:6:in 'KeystoneColors::SettingsController#show'
+actionpack (8.1.2) lib/action_controller/metal/basic_implicit_render.rb:8:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:221:in 'AbstractController::Base#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rendering.rb:199:in 'ActionController::Rendering#process_action'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:267:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.1.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Kernel#public_send'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Rails::Railtie.method_missing'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:33:in 'block in <class:Constraints>'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:62:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:92:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.5) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.5) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.5) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.5) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.5) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.5) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.5) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+rack-test (2.2.0) lib/rack/test.rb:360:in 'Rack::Test::Session#process_request'
+rack-test (2.2.0) lib/rack/test.rb:153:in 'Rack::Test::Session#request'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:297:in 'ActionDispatch::Integration::Session#process'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:19:in 'ActionDispatch::Integration::RequestHelpers#get'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:388:in 'ActionDispatch::Integration::Runner#get'
+/Users/dyb/projects/keystone_colors/spec/requests/settings_spec.rb:19:in 'block (3 levels) in <top (required)>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'block in RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'block in RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'block in RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'block in RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:626:in 'block in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-rails (8.0.3) lib/rspec/rails/adapters.rb:75:in 'block (2 levels) in <module:MinitestLifecycleAdapter>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'RSpec::Core::Example#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:390:in 'RSpec::Core::Hooks::AroundHook#execute_with'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:628:in 'block (2 levels) in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:629:in 'RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:259:in 'RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:653:in 'block in RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:614:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'block in RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (3 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (2 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/configuration.rb:2097:in 'RSpec::Core::Configuration#with_suite_hooks'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:116:in 'block in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/reporter.rb:74:in 'RSpec::Core::Reporter#report'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:115:in 'RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:89:in 'RSpec::Core::Runner#run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:71:in 'RSpec::Core::Runner.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:45:in 'RSpec::Core::Runner.invoke'
+rspec-core (3.13.6) exe/rspec:4:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in '<top (required)>'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Kernel.load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Bundler::CLI::Exec#kernel_load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:23:in 'Bundler::CLI::Exec#run'
+bundler (2.7.1) lib/bundler/cli.rb:451:in 'Bundler::CLI#exec'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/command.rb:28:in 'Bundler::Thor::Command#run'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in 'Bundler::Thor::Invocation#invoke_command'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor.rb:538:in 'Bundler::Thor.dispatch'
+bundler (2.7.1) lib/bundler/cli.rb:35:in 'Bundler::CLI.dispatch'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/base.rb:584:in 'Bundler::Thor::Base::ClassMethods#start'
+bundler (2.7.1) lib/bundler/cli.rb:29:in 'Bundler::CLI.start'
+bundler (2.7.1) exe/bundle:28:in 'block in <top (required)>'
+bundler (2.7.1) lib/bundler/friendly_errors.rb:118:in 'Bundler.with_friendly_errors'
+bundler (2.7.1) exe/bundle:20:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in '<main>'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:14.381290', '2026-03-10 13:34:14.381292') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:14 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  
+NameError (uninitialized constant KeystoneColors::ThemePreference::Templates):
+  
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:15:in '<class:ThemePreference>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:4:in '<module:KeystoneColors>'
+/Users/dyb/projects/keystone_colors/app/models/keystone_colors/theme_preference.rb:3:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'Kernel.require'
+/Users/dyb/.rbenv/versions/3.4.6/lib/ruby/3.4.0/bundled_gems.rb:82:in 'block (2 levels) in Kernel#replace_require'
+zeitwerk (2.7.5) lib/zeitwerk/core_ext/kernel.rb:26:in 'Kernel#require'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:16:in 'KeystoneColors::SettingsController#theme_preference'
+/Users/dyb/projects/keystone_colors/app/controllers/keystone_colors/settings_controller.rb:6:in 'KeystoneColors::SettingsController#show'
+actionpack (8.1.2) lib/action_controller/metal/basic_implicit_render.rb:8:in 'ActionController::BasicImplicitRender#send_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:221:in 'AbstractController::Base#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rendering.rb:199:in 'ActionController::Rendering#process_action'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:267:in 'block in AbstractController::Callbacks#process_action'
+activesupport (8.1.2) lib/active_support/callbacks.rb:110:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/abstract_controller/callbacks.rb:266:in 'AbstractController::Callbacks#process_action'
+actionpack (8.1.2) lib/action_controller/metal/rescue.rb:36:in 'ActionController::Rescue#process_action'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:76:in 'block in ActionController::Instrumentation#process_action'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'block in ActiveSupport::Notifications.instrument'
+activesupport (8.1.2) lib/active_support/notifications/instrumenter.rb:58:in 'ActiveSupport::Notifications::Instrumenter#instrument'
+activesupport (8.1.2) lib/active_support/notifications.rb:210:in 'ActiveSupport::Notifications.instrument'
+actionpack (8.1.2) lib/action_controller/metal/instrumentation.rb:75:in 'ActionController::Instrumentation#process_action'
+actionpack (8.1.2) lib/action_controller/metal/params_wrapper.rb:259:in 'ActionController::ParamsWrapper#process_action'
+activerecord (8.1.2) lib/active_record/railties/controller_runtime.rb:39:in 'ActiveRecord::Railties::ControllerRuntime#process_action'
+actionpack (8.1.2) lib/abstract_controller/base.rb:154:in 'AbstractController::Base#process'
+actionview (8.1.2) lib/action_view/rendering.rb:40:in 'ActionView::Rendering#process'
+actionpack (8.1.2) lib/action_controller/metal.rb:252:in 'ActionController::Metal#dispatch'
+actionpack (8.1.2) lib/action_controller/metal.rb:335:in 'ActionController::Metal.dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:65:in 'ActionDispatch::Routing::RouteSet::Dispatcher#dispatch'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:50:in 'ActionDispatch::Routing::RouteSet::Dispatcher#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:86:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Kernel#public_send'
+railties (8.1.2) lib/rails/railtie.rb:225:in 'Rails::Railtie.method_missing'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:33:in 'block in <class:Constraints>'
+actionpack (8.1.2) lib/action_dispatch/routing/mapper.rb:62:in 'ActionDispatch::Routing::Mapper::Constraints#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:35:in 'block in ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:92:in 'block in ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'Array#each'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:66:in 'ActionDispatch::Journey::Router#recognize'
+actionpack (8.1.2) lib/action_dispatch/journey/router.rb:31:in 'ActionDispatch::Journey::Router#serve'
+actionpack (8.1.2) lib/action_dispatch/routing/route_set.rb:906:in 'ActionDispatch::Routing::RouteSet#call'
+railties (8.1.2) lib/rails/engine/lazy_route_set.rb:60:in 'Rails::Engine::LazyRouteSet#call'
+rack (3.2.5) lib/rack/tempfile_reaper.rb:20:in 'Rack::TempfileReaper#call'
+rack (3.2.5) lib/rack/etag.rb:29:in 'Rack::ETag#call'
+rack (3.2.5) lib/rack/conditional_get.rb:31:in 'Rack::ConditionalGet#call'
+rack (3.2.5) lib/rack/head.rb:15:in 'Rack::Head#call'
+actionpack (8.1.2) lib/action_dispatch/http/content_security_policy.rb:38:in 'ActionDispatch::ContentSecurityPolicy::Middleware#call'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:274:in 'Rack::Session::Abstract::Persisted#context'
+rack-session (2.1.1) lib/rack/session/abstract/id.rb:268:in 'Rack::Session::Abstract::Persisted#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/cookies.rb:708:in 'ActionDispatch::Cookies#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.5) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.5) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.5) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+rack-test (2.2.0) lib/rack/test.rb:360:in 'Rack::Test::Session#process_request'
+rack-test (2.2.0) lib/rack/test.rb:153:in 'Rack::Test::Session#request'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:297:in 'ActionDispatch::Integration::Session#process'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:19:in 'ActionDispatch::Integration::RequestHelpers#get'
+actionpack (8.1.2) lib/action_dispatch/testing/integration.rb:388:in 'ActionDispatch::Integration::Runner#get'
+/Users/dyb/projects/keystone_colors/spec/requests/settings_spec.rb:19:in 'block (3 levels) in <top (required)>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:263:in 'block in RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'block in RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'block in RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'block in RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:626:in 'block in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-rails (8.0.3) lib/rspec/rails/adapters.rb:75:in 'block (2 levels) in <module:MinitestLifecycleAdapter>'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'BasicObject#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/example.rb:457:in 'RSpec::Core::Example#instance_exec'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:390:in 'RSpec::Core::Hooks::AroundHook#execute_with'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:628:in 'block (2 levels) in RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/example.rb:352:in 'RSpec::Core::Example::Procsy#call'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:629:in 'RSpec::Core::Hooks::HookCollections#run_around_example_hooks_for'
+rspec-core (3.13.6) lib/rspec/core/hooks.rb:486:in 'RSpec::Core::Hooks::HookCollections#run'
+rspec-core (3.13.6) lib/rspec/core/example.rb:468:in 'RSpec::Core::Example#with_around_example_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:511:in 'RSpec::Core::Example#with_around_and_singleton_context_hooks'
+rspec-core (3.13.6) lib/rspec/core/example.rb:259:in 'RSpec::Core::Example#run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:653:in 'block in RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:649:in 'RSpec::Core::ExampleGroup.run_examples'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:614:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'block in RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/example_group.rb:615:in 'RSpec::Core::ExampleGroup.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (3 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'Array#map'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:121:in 'block (2 levels) in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/configuration.rb:2097:in 'RSpec::Core::Configuration#with_suite_hooks'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:116:in 'block in RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/reporter.rb:74:in 'RSpec::Core::Reporter#report'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:115:in 'RSpec::Core::Runner#run_specs'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:89:in 'RSpec::Core::Runner#run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:71:in 'RSpec::Core::Runner.run'
+rspec-core (3.13.6) lib/rspec/core/runner.rb:45:in 'RSpec::Core::Runner.invoke'
+rspec-core (3.13.6) exe/rspec:4:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/rspec:25:in '<top (required)>'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Kernel.load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:59:in 'Bundler::CLI::Exec#kernel_load'
+bundler (2.7.1) lib/bundler/cli/exec.rb:23:in 'Bundler::CLI::Exec#run'
+bundler (2.7.1) lib/bundler/cli.rb:451:in 'Bundler::CLI#exec'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/command.rb:28:in 'Bundler::Thor::Command#run'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/invocation.rb:127:in 'Bundler::Thor::Invocation#invoke_command'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor.rb:538:in 'Bundler::Thor.dispatch'
+bundler (2.7.1) lib/bundler/cli.rb:35:in 'Bundler::CLI.dispatch'
+bundler (2.7.1) lib/bundler/vendor/thor/lib/thor/base.rb:584:in 'Bundler::Thor::Base::ClassMethods#start'
+bundler (2.7.1) lib/bundler/cli.rb:29:in 'Bundler::CLI.start'
+bundler (2.7.1) exe/bundle:28:in 'block in <top (required)>'
+bundler (2.7.1) lib/bundler/friendly_errors.rb:118:in 'Bundler.with_friendly_errors'
+bundler (2.7.1) exe/bundle:20:in '<top (required)>'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in 'Kernel#load'
+/Users/dyb/.rbenv/versions/3.4.6/bin/bundle:25:in '<main>'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.5ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:22.458918', '2026-03-10 13:34:22.458920') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:22 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (3.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:40.512639', '2026-03-10 13:34:40.512642') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:40 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.7ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:50.929045', '2026-03-10 13:34:50.929048') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:50 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering /Users/dyb/projects/keystone_colors/app/views/keystone_colors/settings/show.html.erb
+  Rendered /Users/dyb/projects/keystone_colors/app/views/keystone_colors/settings/show.html.erb (Duration: 0.3ms | GC: 0.0ms)
+Completed 200 OK in 41ms (Views: 7.6ms | ActiveRecord: 0.4ms (2 queries, 0 cached) | GC: 10.7ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-03-10 13:34:58.353430', '2026-03-10 13:34:58.353432') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.2ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-03-10 13:34:58.373667"], ["updated_at", "2026-03-10 13:34:58.373667"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 2], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.2ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 3], ["created_at", "2026-03-10 13:34:58.383376"], ["updated_at", "2026-03-10 13:34:58.383376"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 3], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Pluck (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences"."updated_at" FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 3], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.2ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 4], ["created_at", "2026-03-10 13:34:58.391904"], ["updated_at", "2026-03-10 13:34:58.391904"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Update (0.2ms)[0m  [1m[33mUPDATE "keystone_colors_theme_preferences" SET "accent" = ?, "surface" = ?, "updated_at" = ? WHERE "keystone_colors_theme_preferences"."id" = ?[0m  [["accent", "violet"], ["surface", "zinc"], ["updated_at", "2026-03-10 13:34:58.392750"], ["id", 3]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Pluck (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences"."updated_at" FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 4], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 4], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.2ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "blue"], ["surface", "slate"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 5], ["created_at", "2026-03-10 13:34:58.403438"], ["updated_at", "2026-03-10 13:34:58.403438"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.2ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "blue"], ["surface", "slate"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 9], ["created_at", "2026-03-10 13:34:58.411222"], ["updated_at", "2026-03-10 13:34:58.411222"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN immediate TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Update (0.2ms)[0m  [1m[33mUPDATE "keystone_colors_theme_preferences" SET "accent" = ?, "surface" = ?, "template_name" = ?, "updated_at" = ? WHERE "keystone_colors_theme_preferences"."id" = ?[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", "forest"], ["updated_at", "2026-03-10 13:34:58.412003"], ["id", 5]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mCOMMIT TRANSACTION[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors/settings" for 127.0.0.1 at 2026-03-10 09:34:58 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 10], ["LIMIT", 1]]
+  Rendering /Users/dyb/projects/keystone_colors/app/views/keystone_colors/settings/show.html.erb
+  Rendered /Users/dyb/projects/keystone_colors/app/views/keystone_colors/settings/show.html.erb (Duration: 0.2ms | GC: 0.0ms)
+Completed 200 OK in 7ms (Views: 3.5ms | ActiveRecord: 0.2ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
