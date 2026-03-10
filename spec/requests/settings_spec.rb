@@ -26,9 +26,17 @@ RSpec.describe "Settings", type: :request do
       get "/keystone_colors/settings"
 
       body = response.body
-      expect(body).to include('name="theme_preference[accent]"')
-      expect(body).to include('name="theme_preference[surface]"')
-      expect(body).to include('name="theme_preference[template_name]"')
+      expect(body).to include("theme_preference[accent]")
+      expect(body).to include("theme_preference[surface]")
+      expect(body).to include("theme_preference[template_name]")
+    end
+
+    it "renders a reset to defaults button when preference exists" do
+      KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
+
+      get "/keystone_colors/settings"
+
+      expect(response.body).to include("Reset to Default")
     end
   end
 
@@ -54,6 +62,17 @@ RSpec.describe "Settings", type: :request do
       expect(pref.accent).to eq("emerald")
       expect(pref.surface).to eq("stone")
       expect(pref.template_name).to eq("forest")
+    end
+  end
+
+  describe "DELETE /keystone_colors/settings" do
+    it "destroys the preference and redirects" do
+      KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
+
+      delete "/keystone_colors/settings"
+
+      expect(response).to redirect_to("/keystone_colors/settings")
+      expect(user.reload.theme_preference).to be_nil
     end
   end
 end

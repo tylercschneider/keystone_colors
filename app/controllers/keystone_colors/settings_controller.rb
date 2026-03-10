@@ -6,6 +6,11 @@ module KeystoneColors
       @preference = theme_preference
     end
 
+    def destroy
+      ThemePreference.find_by(owner: current_owner)&.destroy
+      redirect_to settings_path
+    end
+
     def update
       @preference = theme_preference
 

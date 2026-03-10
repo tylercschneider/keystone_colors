@@ -1,38 +1,49 @@
-<h1>Color Settings</h1>
+<%= ui_page_header(title: "Color Settings") %>
 
-<%= form_with(
-  url: settings_path,
-  method: :patch,
-  scope: :theme_preference,
-  local: true
-) do |form| %>
-  <div>
-    <%= form.label :template_name, "Theme" %>
-    <%= form.select :template_name,
-      KeystoneColors::Templates.names.map { |n|
-        [KeystoneColors::Templates[n][:label], n]
-      },
-      { include_blank: "Custom" },
-      {} %>
-  </div>
+<%= ui_panel(padding: :lg) do %>
+  <%= form_with(
+    url: settings_path,
+    method: :patch,
+    scope: :theme_preference,
+    local: true
+  ) do |form| %>
+    <div class="space-y-6">
+      <div>
+        <%= ui_select(
+          name: "theme_preference[template_name]",
+          options: KeystoneColors::Templates.names.map { |n|
+            [KeystoneColors::Templates[n][:label], n]
+          },
+          selected: @preference.template_name,
+          include_blank: "Custom"
+        ) %>
+      </div>
 
-  <div>
-    <%= form.label :accent %>
-    <%= form.select :accent,
-      KeystoneColors::ThemePreference::SUPPORTED_ACCENTS.map { |a| [a.capitalize, a] },
-      {},
-      {} %>
-  </div>
+      <div>
+        <%= ui_select(
+          name: "theme_preference[accent]",
+          options: KeystoneColors::ThemePreference::SUPPORTED_ACCENTS.map { |a| [a.capitalize, a] },
+          selected: @preference.accent
+        ) %>
+      </div>
 
-  <div>
-    <%= form.label :surface %>
-    <%= form.select :surface,
-      KeystoneColors::ThemePreference::SUPPORTED_SURFACES.map { |s| [s.capitalize, s] },
-      {},
-      {} %>
-  </div>
+      <div>
+        <%= ui_select(
+          name: "theme_preference[surface]",
+          options: KeystoneColors::ThemePreference::SUPPORTED_SURFACES.map { |s| [s.capitalize, s] },
+          selected: @preference.surface
+        ) %>
+      </div>
 
-  <div>
-    <%= form.submit "Save" %>
-  </div>
+      <div>
+        <%= ui_button(label: "Save", type: :submit) %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @preference.persisted? %>
+    <div class="mt-6 pt-6 border-t border-gray-200 dark:border-zinc-700">
+      <%= button_to "Reset to Default", settings_path, method: :delete %>
+    </div>
+  <% end %>
 <% end %>
