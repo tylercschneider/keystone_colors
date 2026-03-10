@@ -83,7 +83,7 @@ RSpec.describe KeystoneColors::CurrentPalette do
 
     controller.set_current_palette
 
-    expect(session[:keystone_palette]).to eq(
+    expect(session[:keystone_colors_palette]).to eq(
       accent: "emerald",
       surface: "stone",
       updated_at: pref.updated_at.to_f
@@ -114,7 +114,7 @@ RSpec.describe KeystoneColors::CurrentPalette do
 
     css = controller.keystone_palette_css
     expect(css).to include("--color-accent-500: #8b5cf6")
-    expect(session[:keystone_palette][:accent]).to eq("violet")
+    expect(session[:keystone_colors_palette][:accent]).to eq("violet")
   end
 
   it "builds CSS from custom hex values" do
