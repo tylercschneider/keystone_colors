@@ -32,6 +32,20 @@ RSpec.describe "Settings", type: :request do
       expect(body).to include("bg-slate-200")
     end
 
+    it "renders the form with turbo disabled" do
+      get "/keystone_colors"
+
+      expect(response.body).to include('data-turbo="false"')
+    end
+
+    it "renders radio inputs without pointer-events-none" do
+      get "/keystone_colors"
+
+      body = response.body
+      expect(body).to include('class="peer absolute opacity-0"')
+      expect(body).not_to include("pointer-events-none")
+    end
+
     it "renders a reset to defaults button when preference exists" do
       KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
 
