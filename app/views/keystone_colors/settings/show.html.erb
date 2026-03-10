@@ -45,7 +45,7 @@
                 data-accent="<%= template[:accent] %>"
                 data-surface="<%= template[:surface] %>"
                 class="peer absolute opacity-0">
-              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-accent-500 peer-checked:ring-2 peer-checked:ring-accent-500/20 transition">
+              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
                 <span class="w-4 h-4 rounded-full <%= accent_colors[template[:accent].to_s] %>"></span>
                 <span class="w-4 h-4 rounded <%= surface_colors[template[:surface].to_s] %>"></span>
                 <span class="text-sm text-gray-700 dark:text-gray-300"><%= template[:label] %></span>
@@ -64,7 +64,7 @@
                 <%= "checked" if @preference.accent == name %>
                 data-keystone-colors--theme-settings-target="accent"
                 class="peer absolute opacity-0">
-              <span class="block w-10 h-10 rounded-full <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-accent-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
+              <span class="block w-10 h-10 rounded-full <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
               <span class="text-xs text-gray-500 dark:text-gray-400 peer-checked:text-gray-900 dark:peer-checked:text-white transition"><%= name.capitalize %></span>
             </label>
           <% end %>
@@ -80,7 +80,7 @@
                 <%= "checked" if @preference.surface == name %>
                 data-keystone-colors--theme-settings-target="surface"
                 class="peer absolute opacity-0">
-              <span class="block w-10 h-10 rounded-lg <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-accent-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
+              <span class="block w-10 h-10 rounded-lg <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
               <span class="text-xs text-gray-500 dark:text-gray-400 peer-checked:text-gray-900 dark:peer-checked:text-white transition"><%= name.capitalize %></span>
             </label>
           <% end %>
