@@ -54,6 +54,12 @@ RSpec.describe KeystoneColors::ThemePreference do
     expect(pref.errors[:surface]).to include(/must be a supported color name or hex value/)
   end
 
+  it "allows blank template_name for custom colors" do
+    pref = described_class.new(owner: user, accent: "#f446ee", surface: "#737373", template_name: "")
+
+    expect(pref).to be_valid
+  end
+
   it "validates template_name is a known template when present" do
     pref = described_class.new(owner: user, accent: "blue", surface: "slate", template_name: "unknown")
 
