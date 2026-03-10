@@ -78,4 +78,15 @@ RSpec.describe "Settings", type: :request do
     end
   end
 
+  describe "DELETE /keystone_colors" do
+    it "destroys the preference and redirects" do
+      KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
+
+      delete "/keystone_colors"
+
+      expect(response).to redirect_to("/keystone_colors/")
+      expect(KeystoneColors::ThemePreference.find_by(owner: user)).to be_nil
+    end
+  end
+
 end

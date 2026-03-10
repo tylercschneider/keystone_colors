@@ -21,7 +21,7 @@ module KeystoneColors
         return
       end
 
-      cached = session[:keystone_palette]
+      cached = session[:keystone_colors_palette]
 
       if cached && !stale_cache?(owner, cached)
         build_palette_css(cached[:accent], cached[:surface])
@@ -35,7 +35,7 @@ module KeystoneColors
       build_palette_css(accent, surface)
 
       if preference
-        session[:keystone_palette] = {
+        session[:keystone_colors_palette] = {
           accent: preference.accent,
           surface: preference.surface,
           updated_at: preference.updated_at.to_f
