@@ -7,22 +7,17 @@
 <% end %>
 
 <%
-  accent_colors = {
-    "blue" => "bg-blue-500",
-    "emerald" => "bg-emerald-500",
-    "cyan" => "bg-cyan-500",
-    "indigo" => "bg-indigo-500",
-    "violet" => "bg-violet-500",
-    "rose" => "bg-rose-500"
-  }
+  current_accent_hex = if @preference.accent&.start_with?("#")
+    @preference.accent
+  else
+    KeystoneColors::Palettes.accent(@preference.accent || "blue")[500]
+  end
 
-  surface_colors = {
-    "zinc" => "bg-zinc-500",
-    "slate" => "bg-slate-500",
-    "gray" => "bg-gray-500",
-    "neutral" => "bg-neutral-500",
-    "stone" => "bg-stone-500"
-  }
+  current_surface_hex = if @preference.surface&.start_with?("#")
+    @preference.surface
+  else
+    KeystoneColors::Palettes.surface(@preference.surface || "zinc")[500]
+  end
 %>
 
 <%= ui_panel(padding: :lg) do %>
@@ -38,52 +33,55 @@
         <div class="flex flex-wrap gap-2">
           <% KeystoneColors::Templates.names.each do |name| %>
             <% template = KeystoneColors::Templates[name] %>
+            <% accent_hex = KeystoneColors::Palettes.accent(template[:accent])[500] %>
+            <% surface_hex = KeystoneColors::Palettes.surface(template[:surface])[500] %>
             <label class="relative cursor-pointer">
               <input type="radio" name="theme_preference[template_name]" value="<%= name %>"
                 <%= "checked" if @preference.template_name == name.to_s %>
                 data-action="keystone-colors--theme-settings#selectTemplate"
                 data-accent="<%= template[:accent] %>"
                 data-surface="<%= template[:surface] %>"
+                data-accent-hex="<%= accent_hex %>"
+                data-surface-hex="<%= surface_hex %>"
                 class="peer absolute opacity-0">
               <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
-                <span class="w-4 h-4 rounded-full <%= accent_colors[template[:accent].to_s] %>"></span>
-                <span class="w-4 h-4 rounded <%= surface_colors[template[:surface].to_s] %>"></span>
+                <span class="w-4 h-4 rounded-full" style="background-color: <%= accent_hex %>"></span>
+                <span class="w-4 h-4 rounded" style="background-color: <%= surface_hex %>"></span>
                 <span class="text-sm text-gray-700 dark:text-gray-300"><%= template[:label] %></span>
               </span>
             </label>
           <% end %>
+          <label class="relative cursor-pointer">
+            <input type="radio" name="theme_preference[template_name]" value=""
+              <%= "checked" if @preference.accent&.start_with?("#") || @preference.template_name.blank? && @preference.persisted? %>
+              data-keystone-colors--theme-settings-target="customRadio"
+              class="peer absolute opacity-0">
+            <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
+              <span class="text-sm text-gray-700 dark:text-gray-300">Custom</span>
+            </span>
+          </label>
         </div>
       </div>
 
       <div>
         <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Accent Color</h3>
-        <div class="flex flex-wrap gap-3">
-          <% accent_colors.each do |name, bg_class| %>
-            <label class="relative cursor-pointer flex flex-col items-center gap-1">
-              <input type="radio" name="theme_preference[accent]" value="<%= name %>"
-                <%= "checked" if @preference.accent == name %>
-                data-keystone-colors--theme-settings-target="accent"
-                class="peer absolute opacity-0">
-              <span class="block w-10 h-10 rounded-full <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
-              <span class="text-xs text-gray-500 dark:text-gray-400 peer-checked:text-gray-900 dark:peer-checked:text-white transition"><%= name.capitalize %></span>
-            </label>
-          <% end %>
+        <div class="flex items-center gap-4">
+          <input type="color" name="theme_preference[accent]" value="<%= current_accent_hex %>"
+            data-action="keystone-colors--theme-settings#customColorChanged"
+            data-keystone-colors--theme-settings-target="accentPicker"
+            class="w-12 h-12 rounded-lg cursor-pointer border-0 p-0">
+          <span class="text-sm text-gray-500 dark:text-gray-400" data-keystone-colors--theme-settings-target="accentLabel"><%= current_accent_hex %></span>
         </div>
       </div>
 
       <div>
         <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Surface</h3>
-        <div class="flex flex-wrap gap-3">
-          <% surface_colors.each do |name, bg_class| %>
-            <label class="relative cursor-pointer flex flex-col items-center gap-1">
-              <input type="radio" name="theme_preference[surface]" value="<%= name %>"
-                <%= "checked" if @preference.surface == name %>
-                data-keystone-colors--theme-settings-target="surface"
-                class="peer absolute opacity-0">
-              <span class="block w-10 h-10 rounded-lg <%= bg_class %> ring-1 ring-black/10 dark:ring-white/10 peer-checked:ring-2 peer-checked:ring-blue-500 peer-checked:ring-offset-2 peer-checked:ring-offset-white dark:peer-checked:ring-offset-zinc-900 transition"></span>
-              <span class="text-xs text-gray-500 dark:text-gray-400 peer-checked:text-gray-900 dark:peer-checked:text-white transition"><%= name.capitalize %></span>
-            </label>
-          <% end %>
+        <div class="flex items-center gap-4">
+          <input type="color" name="theme_preference[surface]" value="<%= current_surface_hex %>"
+            data-action="keystone-colors--theme-settings#customColorChanged"
+            data-keystone-colors--theme-settings-target="surfacePicker"
+            class="w-12 h-12 rounded-lg cursor-pointer border-0 p-0">
+          <span class="text-sm text-gray-500 dark:text-gray-400" data-keystone-colors--theme-settings-target="surfaceLabel"><%= current_surface_hex %></span>
         </div>
       </div>
 

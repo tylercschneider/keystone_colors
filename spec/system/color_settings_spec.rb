@@ -16,17 +16,17 @@ RSpec.describe "Color settings", type: :feature do
     KeystoneColors::ApplicationController.remove_method(:current_user)
   end
 
-  it "selects accent and surface colors and saves" do
+  it "selects a theme preset and saves" do
     visit "/keystone_colors"
 
-    choose("theme_preference[accent]", option: "rose")
-    choose("theme_preference[surface]", option: "slate")
+    choose("theme_preference[template_name]", option: "forest")
     click_button "Save"
 
     expect(page).to have_text("Color settings updated.")
     pref = user.reload.theme_preference
-    expect(pref.accent).to eq("rose")
-    expect(pref.surface).to eq("slate")
+    expect(pref.accent).to eq("emerald")
+    expect(pref.surface).to eq("stone")
+    expect(pref.template_name).to eq("forest")
   end
 
   it "selects the default theme preset and saves" do
@@ -41,31 +41,17 @@ RSpec.describe "Color settings", type: :feature do
     expect(pref.template_name).to eq("default")
   end
 
-  it "selects a theme preset and saves" do
+  it "saves custom hex colors from color pickers" do
     visit "/keystone_colors"
 
-    choose("theme_preference[template_name]", option: "forest")
-    click_button "Save"
-
-    pref = user.reload.theme_preference
-    expect(pref.accent).to eq("emerald")
-    expect(pref.surface).to eq("stone")
-    expect(pref.template_name).to eq("forest")
-  end
-
-  it "updates an existing preference" do
-    KeystoneColors::ThemePreference.create!(owner: user, accent: "blue", surface: "zinc")
-
-    visit "/keystone_colors"
-
-    choose("theme_preference[accent]", option: "violet")
-    choose("theme_preference[surface]", option: "neutral")
+    fill_in "theme_preference[accent]", with: "#e11d48"
+    fill_in "theme_preference[surface]", with: "#44403c"
     click_button "Save"
 
     expect(page).to have_text("Color settings updated.")
     pref = user.reload.theme_preference
-    expect(pref.accent).to eq("violet")
-    expect(pref.surface).to eq("neutral")
+    expect(pref.accent).to eq("#e11d48")
+    expect(pref.surface).to eq("#44403c")
   end
 
   it "resets to default" do

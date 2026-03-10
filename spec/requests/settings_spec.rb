@@ -22,14 +22,14 @@ RSpec.describe "Settings", type: :request do
       expect(response).to have_http_status(:ok)
     end
 
-    it "renders color swatches for accents and surfaces" do
+    it "renders color pickers and theme presets" do
       get "/keystone_colors"
 
       body = response.body
-      expect(body).to include("bg-blue-500")
-      expect(body).to include("bg-emerald-500")
-      expect(body).to include("bg-zinc-500")
-      expect(body).to include("bg-slate-500")
+      expect(body).to include('type="color"')
+      expect(body).to include("Default")
+      expect(body).to include("Ocean")
+      expect(body).to include("Custom")
     end
 
     it "renders a reset to defaults button when preference exists" do
@@ -51,6 +51,17 @@ RSpec.describe "Settings", type: :request do
       pref = user.reload.theme_preference
       expect(pref.accent).to eq("violet")
       expect(pref.surface).to eq("zinc")
+    end
+
+    it "saves custom hex colors" do
+      patch "/keystone_colors", params: {
+        theme_preference: { accent: "#e11d48", surface: "#44403c" }
+      }
+
+      expect(response).to redirect_to("/keystone_colors/")
+      pref = user.reload.theme_preference
+      expect(pref.accent).to eq("#e11d48")
+      expect(pref.surface).to eq("#44403c")
     end
 
     it "applies a template when template_name is provided" do
