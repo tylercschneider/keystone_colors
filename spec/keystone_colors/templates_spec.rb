@@ -3,8 +3,8 @@
 require "spec_helper"
 
 RSpec.describe KeystoneColors::Templates do
-  SUPPORTED_ACCENTS = %i[blue emerald cyan indigo violet rose].freeze
-  SUPPORTED_SURFACES = %i[zinc slate gray neutral stone].freeze
+  SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].map { |c| [c, c.to_sym] }.flatten.freeze
+  SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].map { |c| [c, c.to_sym] }.flatten.freeze
 
   it "provides exactly 6 preset templates" do
     expect(described_class.names.size).to eq(6)
@@ -39,6 +39,17 @@ RSpec.describe KeystoneColors::Templates do
 
   it "raises KeyError for unknown template" do
     expect { described_class[:nonexistent] }.to raise_error(KeyError)
+  end
+
+  it "default template uses configured default_accent and default_surface" do
+    KeystoneColors.configuration.default_accent = "indigo"
+    KeystoneColors.configuration.default_surface = "slate"
+
+    default = described_class[:default]
+    expect(default[:accent]).to eq("indigo")
+    expect(default[:surface]).to eq("slate")
+  ensure
+    KeystoneColors.reset_configuration!
   end
 
   it "uses distinct accent/surface combinations" do
