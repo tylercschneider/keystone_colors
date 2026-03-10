@@ -14,7 +14,7 @@ module KeystoneColors
 
     validate :accent_is_valid
     validate :surface_is_valid
-    validates :template_name, inclusion: { in: Templates.names.map(&:to_s) }, allow_blank: true
+    validates :template_name, inclusion: {in: Templates.names.map(&:to_s)}, allow_blank: true
 
     def apply_template!(name)
       template = Templates[name]

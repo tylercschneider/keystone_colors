@@ -9,6 +9,7 @@ RSpec.describe KeystoneColors::PaletteHelper do
     Class.new {
       include ActionView::Helpers::TagHelper
       include KeystoneColors::PaletteHelper
+
       attr_accessor :keystone_palette_css, :output_buffer
     }.new
   end

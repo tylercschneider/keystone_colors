@@ -31,12 +31,13 @@ RSpec.describe KeystoneColors::Generators::InstallGenerator do
 
     expect(output).to include("mount KeystoneColors::Engine")
     expect(output).to include("rails db:migrate")
+    expect(output).to include("keystone_palette_style_tag")
   end
 
   private
 
   def capture(stream)
-    old = stream == :stdout ? $stdout : $stderr
+    old = (stream == :stdout) ? $stdout : $stderr
     captured = StringIO.new
     if stream == :stdout
       $stdout = captured

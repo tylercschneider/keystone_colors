@@ -88,7 +88,7 @@ RSpec.describe KeystoneColors::CurrentPalette do
     expect(session[:keystone_colors_palette]).to eq(
       accent: "emerald",
       surface: "stone",
-      updated_at: pref.updated_at.to_f
+      updated_at: pref.updated_at.to_i
     )
 
     # Second request uses cache
@@ -103,10 +103,10 @@ RSpec.describe KeystoneColors::CurrentPalette do
   it "reloads from DB when session cache is stale" do
     pref = KeystoneColors::ThemePreference.create!(owner: user, accent: "emerald", surface: "stone")
     session = {
-      keystone_palette: {
+      keystone_colors_palette: {
         accent: "emerald",
         surface: "stone",
-        updated_at: (pref.updated_at - 1).to_f
+        updated_at: (pref.updated_at - 1).to_i
       }
     }
     controller = controller_class.new(user: user, session: session)

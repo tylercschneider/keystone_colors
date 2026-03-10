@@ -38,7 +38,7 @@ module KeystoneColors
         session[:keystone_colors_palette] = {
           accent: preference.accent,
           surface: preference.surface,
-          updated_at: preference.updated_at.to_f
+          updated_at: preference.updated_at.to_i
         }
       end
     end
@@ -64,7 +64,7 @@ module KeystoneColors
       if value&.start_with?("#")
         KeystoneColors::Palettes.generate_shades(value)
       else
-        type == :accent ? KeystoneColors::Palettes.accent(value) : KeystoneColors::Palettes.surface(value)
+        (type == :accent) ? KeystoneColors::Palettes.accent(value) : KeystoneColors::Palettes.surface(value)
       end
     end
 
@@ -75,7 +75,7 @@ module KeystoneColors
 
       return true unless updated_at
 
-      updated_at.to_f != cached[:updated_at]
+      updated_at.to_i != cached[:updated_at]
     end
   end
 end
