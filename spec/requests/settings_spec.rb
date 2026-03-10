@@ -67,6 +67,19 @@ RSpec.describe "Settings", type: :request do
       expect(pref.surface).to eq("zinc")
     end
 
+    it "updates an existing preference with new colors" do
+      KeystoneColors::ThemePreference.create!(owner: user, accent: "blue", surface: "zinc")
+
+      patch "/keystone_colors", params: {
+        theme_preference: { accent: "rose", surface: "slate" }
+      }
+
+      expect(response).to redirect_to("/keystone_colors/")
+      pref = user.reload.theme_preference
+      expect(pref.accent).to eq("rose")
+      expect(pref.surface).to eq("slate")
+    end
+
     it "applies a template when template_name is provided" do
       patch "/keystone_colors", params: {
         theme_preference: { template_name: "forest" }
