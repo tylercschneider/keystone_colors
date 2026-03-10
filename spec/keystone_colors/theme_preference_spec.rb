@@ -39,4 +39,11 @@ RSpec.describe KeystoneColors::ThemePreference do
     expect(pref.owner).to eq(user)
     expect(pref.owner_type).to eq("User")
   end
+
+  it "validates accent is a supported value" do
+    pref = described_class.new(owner: user, accent: "neon", surface: "slate")
+
+    expect(pref).not_to be_valid
+    expect(pref.errors[:accent]).to include(/is not included/)
+  end
 end

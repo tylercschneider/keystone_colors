@@ -5,5 +5,9 @@ module KeystoneColors
     self.table_name = "keystone_colors_theme_preferences"
 
     belongs_to :owner, polymorphic: true
+
+    SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].freeze
+
+    validates :accent, inclusion: { in: SUPPORTED_ACCENTS }
   end
 end
