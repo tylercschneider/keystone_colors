@@ -12,7 +12,14 @@ module KeystoneColors
 
     def set_current_palette
       owner = send(KeystoneColors.configuration.current_owner_method)
-      return unless owner
+
+      unless owner
+        build_palette_css(
+          KeystoneColors.configuration.default_accent,
+          KeystoneColors.configuration.default_surface
+        )
+        return
+      end
 
       cached = session[:keystone_palette]
 
