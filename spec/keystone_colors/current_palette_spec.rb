@@ -58,12 +58,14 @@ RSpec.describe KeystoneColors::CurrentPalette do
     expect(css).to include("--color-surface-700: #44403c")
   end
 
-  it "returns nil css when owner has no preference" do
+  it "uses configured defaults when owner has no preference" do
     controller = controller_class.new(user: user)
 
     controller.set_current_palette
 
-    expect(controller.keystone_palette_css).to be_nil
+    css = controller.keystone_palette_css
+    expect(css).to include("--color-accent-500: #3b82f6")
+    expect(css).to include("--color-surface-500: #71717a")
   end
 
   it "returns nil css when there is no current owner" do
