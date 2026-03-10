@@ -6,6 +6,8 @@ module KeystoneColors
 
     def set_current_palette
       owner = send(KeystoneColors.configuration.current_owner_method)
+      return unless owner
+
       preference = KeystoneColors::ThemePreference.find_by(owner: owner)
 
       if preference

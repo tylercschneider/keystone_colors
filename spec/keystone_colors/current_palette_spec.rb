@@ -74,4 +74,13 @@ RSpec.describe KeystoneColors::CurrentPalette do
     expect(KeystoneUi::Current.accent_override).to be_nil
     expect(KeystoneUi::Current.surface_override).to be_nil
   end
+
+  it "leaves overrides unset when there is no current owner" do
+    controller = controller_class.new(user: nil)
+
+    controller.set_current_palette
+
+    expect(KeystoneUi::Current.accent_override).to be_nil
+    expect(KeystoneUi::Current.surface_override).to be_nil
+  end
 end
