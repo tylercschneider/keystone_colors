@@ -53,4 +53,11 @@ RSpec.describe KeystoneColors::ThemePreference do
     expect(pref).not_to be_valid
     expect(pref.errors[:surface]).to include(/is not included/)
   end
+
+  it "validates template_name is a known template when present" do
+    pref = described_class.new(owner: user, accent: "blue", surface: "slate", template_name: "unknown")
+
+    expect(pref).not_to be_valid
+    expect(pref.errors[:template_name]).to include(/is not included/)
+  end
 end

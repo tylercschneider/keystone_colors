@@ -12,5 +12,6 @@ module KeystoneColors
 
     validates :accent, inclusion: { in: SUPPORTED_ACCENTS }
     validates :surface, inclusion: { in: SUPPORTED_SURFACES }
+    validates :template_name, inclusion: { in: Templates.names.map(&:to_s) }, allow_nil: true
   end
 end
