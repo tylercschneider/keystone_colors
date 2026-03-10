@@ -13,7 +13,7 @@ Each cycle produces ONE small commit:
 2. **Run test** - Confirm it fails (red)
 3. **Write minimal code** - Just enough to pass that ONE test
 4. **Run test** - Confirm it passes (green)
-5. **Run full suite** - `bin/rails test` to catch regressions
+5. **Run full suite** - `bundle exec rspec` to catch regressions
 6. **Commit** - Usually 2 files only: test file + implementation file
 
 Repeat until feature is complete.
