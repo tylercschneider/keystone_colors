@@ -32,10 +32,10 @@
         <div class="flex flex-wrap gap-2">
           <% KeystoneColors::Templates.names.each do |name| %>
             <% template = KeystoneColors::Templates[name] %>
-            <label class="cursor-pointer">
+            <label class="relative cursor-pointer">
               <input type="radio" name="theme_preference[template_name]" value="<%= name %>"
                 <%= "checked" if @preference.template_name == name.to_s %>
-                class="peer sr-only">
+                class="peer hidden">
               <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
                 <span class="w-4 h-4 rounded-full <%= accent_colors[template[:accent].to_s] %>"></span>
                 <span class="w-4 h-4 rounded <%= surface_colors[template[:surface].to_s]&.split&.first %>"></span>
@@ -50,10 +50,10 @@
         <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Accent Color</h3>
         <div class="flex flex-wrap gap-3">
           <% accent_colors.each do |name, bg_class| %>
-            <label class="cursor-pointer" title="<%= name.capitalize %>">
+            <label class="relative cursor-pointer" title="<%= name.capitalize %>">
               <input type="radio" name="theme_preference[accent]" value="<%= name %>"
                 <%= "checked" if @preference.accent == name %>
-                class="peer sr-only">
+                class="peer hidden">
               <span class="block w-10 h-10 rounded-full <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
             </label>
           <% end %>
@@ -64,10 +64,10 @@
         <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Surface</h3>
         <div class="flex flex-wrap gap-3">
           <% surface_colors.each do |name, bg_class| %>
-            <label class="cursor-pointer" title="<%= name.capitalize %>">
+            <label class="relative cursor-pointer" title="<%= name.capitalize %>">
               <input type="radio" name="theme_preference[surface]" value="<%= name %>"
                 <%= "checked" if @preference.surface == name %>
-                class="peer sr-only">
+                class="peer hidden">
               <span class="block w-10 h-10 rounded-lg <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
             </label>
           <% end %>
