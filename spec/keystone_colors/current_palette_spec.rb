@@ -114,4 +114,15 @@ RSpec.describe KeystoneColors::CurrentPalette do
     expect(css).to include("--color-accent-500: #8b5cf6")
     expect(session[:keystone_palette][:accent]).to eq("violet")
   end
+
+  it "builds CSS from custom hex values" do
+    KeystoneColors::ThemePreference.create!(owner: user, accent: "#e11d48", surface: "#44403c")
+    controller = controller_class.new(user: user)
+
+    controller.set_current_palette
+
+    css = controller.keystone_palette_css
+    expect(css).to include("--color-accent-500: #e11d48")
+    expect(css).to include("--color-surface-500: #44403c")
+  end
 end
