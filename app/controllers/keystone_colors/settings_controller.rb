@@ -8,7 +8,7 @@ module KeystoneColors
 
     def destroy
       ThemePreference.find_by(owner: current_owner)&.destroy
-      redirect_to settings_path
+      redirect_to root_path
     end
 
     def update
@@ -26,7 +26,7 @@ module KeystoneColors
       end
 
       if @preference.save
-        redirect_to settings_path
+        redirect_to root_path
       else
         render :show, status: :unprocessable_entity
       end
