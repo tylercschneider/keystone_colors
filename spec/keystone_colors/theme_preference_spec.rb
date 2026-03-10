@@ -60,4 +60,15 @@ RSpec.describe KeystoneColors::ThemePreference do
     expect(pref).not_to be_valid
     expect(pref.errors[:template_name]).to include(/is not included/)
   end
+
+  it "apply_template! sets accent and surface from a template and saves" do
+    pref = described_class.create!(owner: user, accent: "blue", surface: "slate")
+
+    pref.apply_template!(:forest)
+
+    pref.reload
+    expect(pref.accent).to eq("emerald")
+    expect(pref.surface).to eq("stone")
+    expect(pref.template_name).to eq("forest")
+  end
 end
