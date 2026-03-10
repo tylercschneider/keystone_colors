@@ -6,6 +6,10 @@ module KeystoneColors
   module CurrentPalette
     extend ActiveSupport::Concern
 
+    included do
+      helper_method :keystone_palette_css if respond_to?(:helper_method)
+    end
+
     def set_current_palette
       owner = send(KeystoneColors.configuration.current_owner_method)
       return unless owner
