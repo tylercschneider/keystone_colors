@@ -8,7 +8,17 @@ module KeystoneColors
 
     def update
       @preference = theme_preference
-      @preference.assign_attributes(preference_params)
+
+      if preference_params[:template_name].present?
+        template = Templates[preference_params[:template_name]]
+        @preference.assign_attributes(
+          accent: template[:accent].to_s,
+          surface: template[:surface].to_s,
+          template_name: preference_params[:template_name]
+        )
+      else
+        @preference.assign_attributes(preference_params)
+      end
 
       if @preference.save
         redirect_to settings_path
