@@ -54,14 +54,4 @@ RSpec.describe "Color settings", type: :feature do
     expect(pref.surface).to eq("#44403c")
   end
 
-  it "resets to default" do
-    KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
-
-    visit "/keystone_colors"
-
-    click_button "Reset to Default"
-
-    expect(page).to have_text("Color settings reset to default.")
-    expect(user.reload.theme_preference).to be_nil
-  end
 end

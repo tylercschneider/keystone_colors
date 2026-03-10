@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/tylercschneider/keystone_ui.git
-  revision: 66eb20d96d84c28f829481498b94ef7befbccc5b
+  revision: e7de0c1900592d0c211d6ae13365a407eefa6d97
   branch: main
   specs:
     keystone_ui (0.4.1)
