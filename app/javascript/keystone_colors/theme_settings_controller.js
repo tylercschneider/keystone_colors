@@ -29,9 +29,11 @@ export default class extends Controller {
     this.templateLabelTargets.forEach(label => {
       const border = label.querySelector("span")
       if (label.dataset.template === selected) {
-        border.style.borderColor = "#3b82f6"
+        border.classList.remove("border-transparent")
+        border.classList.add("border-accent-500")
       } else {
-        border.style.borderColor = "transparent"
+        border.classList.remove("border-accent-500")
+        border.classList.add("border-transparent")
       }
     })
   }
