@@ -23,4 +23,33 @@ RSpec.describe KeystoneColors::Generators::InstallGenerator do
     content = File.read(migration_files.first)
     expect(content).to include("create_table :keystone_colors_theme_preferences")
   end
+
+  it "prints setup instructions" do
+    output = capture(:stdout) do
+      Rails::Generators.invoke("keystone_colors:install", [], destination_root: destination, skip: true)
+    end
+
+    expect(output).to include("mount KeystoneColors::Engine")
+    expect(output).to include("rails db:migrate")
+  end
+
+  private
+
+  def capture(stream)
+    old = stream == :stdout ? $stdout : $stderr
+    captured = StringIO.new
+    if stream == :stdout
+      $stdout = captured
+    else
+      $stderr = captured
+    end
+    yield
+    captured.string
+  ensure
+    if stream == :stdout
+      $stdout = old
+    else
+      $stderr = old
+    end
+  end
 end
