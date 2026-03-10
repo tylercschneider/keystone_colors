@@ -6,7 +6,7 @@ module KeystoneColors
       css = keystone_palette_css
       return unless css
 
-      "<style>#{css}</style>".html_safe
+      content_tag(:style, css)
     end
   end
 end
