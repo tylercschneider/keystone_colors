@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe KeystoneColors::Templates do
-  SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].map { |c| [c, c.to_sym] }.flatten.freeze
-  SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].map { |c| [c, c.to_sym] }.flatten.freeze
+SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].flat_map { |c| [c, c.to_sym] }.freeze
+SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].flat_map { |c| [c, c.to_sym] }.freeze
 
+RSpec.describe KeystoneColors::Templates do
   it "provides exactly 6 preset templates" do
     expect(described_class.names.size).to eq(6)
   end
