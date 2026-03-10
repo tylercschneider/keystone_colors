@@ -26,7 +26,7 @@ RSpec.describe "Settings", type: :request do
       get "/keystone_colors"
 
       body = response.body
-      expect(body).to include('type="color"')
+      expect(body).to include('data-controller="color-picker"')
       expect(body).to include("Default")
       expect(body).to include("Ocean")
       expect(body).to include("Custom")
