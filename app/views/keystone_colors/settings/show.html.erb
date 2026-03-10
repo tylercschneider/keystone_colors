@@ -18,6 +18,8 @@
   else
     KeystoneColors::Palettes.surface(@preference.surface || "zinc")[500]
   end
+
+  selected_template = @preference.template_name
 %>
 
 <%= ui_panel(padding: :lg) do %>
@@ -25,38 +27,38 @@
     url: engine_root_path,
     method: :patch,
     scope: :theme_preference,
-    data: { turbo: false, controller: "keystone-colors--theme-settings" }
+    data: { turbo: false, controller: "keystone-colors--theme-settings", selected_template: selected_template }
   ) do |form| %>
     <div class="space-y-8">
       <div>
         <h3 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">Theme</h3>
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2" data-keystone-colors--theme-settings-target="templateList">
           <% KeystoneColors::Templates.names.each do |name| %>
             <% template = KeystoneColors::Templates[name] %>
             <% accent_hex = KeystoneColors::Palettes.accent(template[:accent])[500] %>
             <% surface_hex = KeystoneColors::Palettes.surface(template[:surface])[500] %>
-            <label class="relative cursor-pointer">
+            <label class="relative cursor-pointer" data-keystone-colors--theme-settings-target="templateLabel" data-template="<%= name %>">
               <input type="radio" name="theme_preference[template_name]" value="<%= name %>"
-                <%= "checked" if @preference.template_name == name.to_s %>
+                <%= "checked" if selected_template == name.to_s %>
                 data-action="keystone-colors--theme-settings#selectTemplate"
-                data-accent="<%= template[:accent] %>"
-                data-surface="<%= template[:surface] %>"
                 data-accent-hex="<%= accent_hex %>"
                 data-surface-hex="<%= surface_hex %>"
-                class="peer absolute opacity-0">
-              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
+                class="sr-only">
+              <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition"
+                style="border-color: <%= selected_template == name.to_s ? '#3b82f6' : 'transparent' %>">
                 <span class="w-4 h-4 rounded-full" style="background-color: <%= accent_hex %>"></span>
                 <span class="w-4 h-4 rounded" style="background-color: <%= surface_hex %>"></span>
                 <span class="text-sm text-gray-700 dark:text-gray-300"><%= template[:label] %></span>
               </span>
             </label>
           <% end %>
-          <label class="relative cursor-pointer">
+          <label class="relative cursor-pointer" data-keystone-colors--theme-settings-target="templateLabel" data-template="custom">
             <input type="radio" name="theme_preference[template_name]" value=""
-              <%= "checked" if @preference.accent&.start_with?("#") || @preference.template_name.blank? && @preference.persisted? %>
+              <%= "checked" if @preference.accent&.start_with?("#") || selected_template.blank? && @preference.persisted? %>
               data-keystone-colors--theme-settings-target="customRadio"
-              class="peer absolute opacity-0">
-            <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
+              class="sr-only">
+            <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border-2 transition"
+              style="border-color: <%= @preference.accent&.start_with?('#') ? '#3b82f6' : 'transparent' %>">
               <span class="text-sm text-gray-700 dark:text-gray-300">Custom</span>
             </span>
           </label>
@@ -88,12 +90,6 @@
       <div class="flex items-center gap-3">
         <%= ui_button(label: "Save", type: :submit) %>
       </div>
-    </div>
-  <% end %>
-
-  <% if @preference.persisted? %>
-    <div class="mt-6 pt-6 border-t border-gray-200 dark:border-zinc-700">
-      <%= button_to "Reset to Default", engine_root_path, method: :delete, data: { turbo: false } %>
     </div>
   <% end %>
 <% end %>
