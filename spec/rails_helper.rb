@@ -5,6 +5,7 @@ ENV["RAILS_ENV"] = "test"
 require_relative "dummy/config/environment"
 
 require "rspec/rails"
+require "capybara/rspec"
 
 ActiveRecord::Schema.define do
   create_table :keystone_colors_theme_preferences, force: true do |t|
