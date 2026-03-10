@@ -38,6 +38,9 @@ module KeystoneColors
         say "       include KeystoneColors::CurrentPalette"
         say "       before_action :set_current_palette"
         say ""
+        say "  4. Add the style tag to your layout <head>:"
+        say "       <%= keystone_palette_style_tag %>"
+        say ""
       end
     end
   end
