@@ -2,10 +2,9 @@
 
 module KeystoneColors
   class Configuration
-    attr_accessor :owner_class_name, :current_owner_method, :default_template, :default_accent, :default_surface, :layout
+    attr_accessor :current_owner_method, :default_template, :default_accent, :default_surface, :layout
 
     def initialize
-      @owner_class_name = "User"
       @current_owner_method = :current_user
       @default_template = :ocean
       @default_accent = "blue"

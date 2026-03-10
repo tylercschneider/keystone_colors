@@ -8,7 +8,6 @@ RSpec.describe KeystoneColors::Configuration do
   it "has sensible defaults" do
     config = KeystoneColors.configuration
 
-    expect(config.owner_class_name).to eq("User")
     expect(config.current_owner_method).to eq(:current_user)
     expect(config.default_template).to eq(:ocean)
     expect(config.default_accent).to eq("blue")
