@@ -46,4 +46,11 @@ RSpec.describe KeystoneColors::ThemePreference do
     expect(pref).not_to be_valid
     expect(pref.errors[:accent]).to include(/is not included/)
   end
+
+  it "validates surface is a supported value" do
+    pref = described_class.new(owner: user, accent: "blue", surface: "marble")
+
+    expect(pref).not_to be_valid
+    expect(pref.errors[:surface]).to include(/is not included/)
+  end
 end

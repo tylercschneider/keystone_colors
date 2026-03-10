@@ -8,6 +8,9 @@ module KeystoneColors
 
     SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].freeze
 
+    SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].freeze
+
     validates :accent, inclusion: { in: SUPPORTED_ACCENTS }
+    validates :surface, inclusion: { in: SUPPORTED_SURFACES }
   end
 end
