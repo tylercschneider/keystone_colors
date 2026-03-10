@@ -1,5 +1,5 @@
 KeystoneColors::Engine.routes.draw do
-  root "settings#show"
-  patch "/", to: "settings#update"
-  delete "/", to: "settings#destroy"
+  root "keystone_colors/settings#show", as: :keystone_colors_root
+  patch "/", to: "keystone_colors/settings#update"
+  delete "/", to: "keystone_colors/settings#destroy"
 end
