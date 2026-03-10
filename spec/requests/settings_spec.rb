@@ -15,15 +15,15 @@ RSpec.describe "Settings", type: :request do
     KeystoneColors::ApplicationController.remove_method(:current_user)
   end
 
-  describe "GET /keystone_colors/settings" do
+  describe "GET /keystone_colors" do
     it "returns a successful response" do
-      get "/keystone_colors/settings"
+      get "/keystone_colors"
 
       expect(response).to have_http_status(:ok)
     end
 
     it "renders a form with accent, surface, and template fields" do
-      get "/keystone_colors/settings"
+      get "/keystone_colors"
 
       body = response.body
       expect(body).to include("theme_preference[accent]")
@@ -34,30 +34,30 @@ RSpec.describe "Settings", type: :request do
     it "renders a reset to defaults button when preference exists" do
       KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
 
-      get "/keystone_colors/settings"
+      get "/keystone_colors"
 
       expect(response.body).to include("Reset to Default")
     end
   end
 
-  describe "PATCH /keystone_colors/settings" do
+  describe "PATCH /keystone_colors" do
     it "creates a preference with valid accent and surface" do
-      patch "/keystone_colors/settings", params: {
+      patch "/keystone_colors", params: {
         theme_preference: { accent: "violet", surface: "zinc" }
       }
 
-      expect(response).to redirect_to("/keystone_colors/settings")
+      expect(response).to redirect_to("/keystone_colors/")
       pref = user.reload.theme_preference
       expect(pref.accent).to eq("violet")
       expect(pref.surface).to eq("zinc")
     end
 
     it "applies a template when template_name is provided" do
-      patch "/keystone_colors/settings", params: {
+      patch "/keystone_colors", params: {
         theme_preference: { template_name: "forest" }
       }
 
-      expect(response).to redirect_to("/keystone_colors/settings")
+      expect(response).to redirect_to("/keystone_colors/")
       pref = user.reload.theme_preference
       expect(pref.accent).to eq("emerald")
       expect(pref.surface).to eq("stone")
@@ -65,13 +65,13 @@ RSpec.describe "Settings", type: :request do
     end
   end
 
-  describe "DELETE /keystone_colors/settings" do
+  describe "DELETE /keystone_colors" do
     it "destroys the preference and redirects" do
       KeystoneColors::ThemePreference.create!(owner: user, accent: "violet", surface: "zinc")
 
-      delete "/keystone_colors/settings"
+      delete "/keystone_colors"
 
-      expect(response).to redirect_to("/keystone_colors/settings")
+      expect(response).to redirect_to("/keystone_colors/")
       expect(user.reload.theme_preference).to be_nil
     end
   end

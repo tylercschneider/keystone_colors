@@ -1,3 +1,5 @@
 KeystoneColors::Engine.routes.draw do
-  resource :settings, only: %i[show update destroy]
+  root "settings#show"
+  patch "/", to: "settings#update"
+  delete "/", to: "settings#destroy"
 end
