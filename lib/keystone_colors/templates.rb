@@ -3,12 +3,6 @@
 module KeystoneColors
   module Templates
     PRESETS = {
-      default: {
-        accent: :blue,
-        surface: :zinc,
-        label: "Default",
-        description: "Blue accent with zinc surfaces"
-      },
       ocean: {
         accent: :blue,
         surface: :slate,
@@ -42,15 +36,26 @@ module KeystoneColors
     }.freeze
 
     def self.all
-      PRESETS
+      PRESETS.merge(default: default_template)
     end
 
     def self.[](name)
+      return default_template if name.to_sym == :default
+
       PRESETS.fetch(name.to_sym)
     end
 
     def self.names
-      PRESETS.keys
+      [:default] + PRESETS.keys
+    end
+
+    def self.default_template
+      {
+        accent: KeystoneColors.configuration.default_accent,
+        surface: KeystoneColors.configuration.default_surface,
+        label: "Default",
+        description: "Default theme"
+      }
     end
   end
 end
