@@ -22,14 +22,18 @@ module KeystoneColors
       end
 
       preference = KeystoneColors::ThemePreference.find_by(owner: owner)
-      return unless preference
+      accent = preference&.accent || KeystoneColors.configuration.default_accent
+      surface = preference&.surface || KeystoneColors.configuration.default_surface
 
-      build_palette_css(preference.accent, preference.surface)
-      session[:keystone_palette] = {
-        accent: preference.accent,
-        surface: preference.surface,
-        updated_at: preference.updated_at.to_f
-      }
+      build_palette_css(accent, surface)
+
+      if preference
+        session[:keystone_palette] = {
+          accent: preference.accent,
+          surface: preference.surface,
+          updated_at: preference.updated_at.to_f
+        }
+      end
     end
 
     def keystone_palette_css
