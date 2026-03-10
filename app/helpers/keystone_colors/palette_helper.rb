@@ -3,7 +3,7 @@
 module KeystoneColors
   module PaletteHelper
     def keystone_palette_style_tag
-      css = keystone_palette_css
+      css = controller.keystone_palette_css
       return unless css
 
       "<style>#{css}</style>".html_safe
