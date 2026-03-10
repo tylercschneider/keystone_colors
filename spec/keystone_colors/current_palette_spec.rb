@@ -22,16 +22,9 @@ end
 
 require_relative "../../lib/keystone_colors/configuration"
 require_relative "../../lib/keystone_colors/templates"
+require_relative "../../lib/keystone_colors/palettes"
 require_relative "../../app/models/keystone_colors/application_record"
 require_relative "../../app/models/keystone_colors/theme_preference"
-
-# Stub KeystoneUi::Current
-module KeystoneUi
-  class Current < ActiveSupport::CurrentAttributes
-    attribute :accent_override, :surface_override
-  end
-end
-
 require_relative "../../app/controllers/concerns/keystone_colors/current_palette"
 
 class User < ActiveRecord::Base
@@ -54,34 +47,31 @@ RSpec.describe KeystoneColors::CurrentPalette do
 
   let(:user) { User.create!(name: "Test") }
 
-  after { KeystoneUi::Current.reset }
-
-  it "sets accent and surface overrides from the owner's preference" do
+  it "stores accent and surface CSS variables from the owner's preference" do
     KeystoneColors::ThemePreference.create!(owner: user, accent: "emerald", surface: "stone")
     controller = controller_class.new(user: user)
 
     controller.set_current_palette
 
-    expect(KeystoneUi::Current.accent_override).to eq(:emerald)
-    expect(KeystoneUi::Current.surface_override).to eq(:stone)
+    css = controller.keystone_palette_css
+    expect(css).to include("--color-accent-500: #10b981")
+    expect(css).to include("--color-surface-700: #44403c")
   end
 
-  it "leaves overrides unset when owner has no preference" do
+  it "returns nil css when owner has no preference" do
     controller = controller_class.new(user: user)
 
     controller.set_current_palette
 
-    expect(KeystoneUi::Current.accent_override).to be_nil
-    expect(KeystoneUi::Current.surface_override).to be_nil
+    expect(controller.keystone_palette_css).to be_nil
   end
 
-  it "leaves overrides unset when there is no current owner" do
+  it "returns nil css when there is no current owner" do
     controller = controller_class.new(user: nil)
 
     controller.set_current_palette
 
-    expect(KeystoneUi::Current.accent_override).to be_nil
-    expect(KeystoneUi::Current.surface_override).to be_nil
+    expect(controller.keystone_palette_css).to be_nil
   end
 
   it "caches palette in session and skips DB on subsequent requests" do
@@ -97,14 +87,13 @@ RSpec.describe KeystoneColors::CurrentPalette do
       updated_at: pref.updated_at.to_f
     )
 
-    # Second request uses cache — change DB but session is stale check
-    KeystoneUi::Current.reset
+    # Second request uses cache
     controller2 = controller_class.new(user: user, session: session)
     expect(KeystoneColors::ThemePreference).not_to receive(:find_by)
 
     controller2.set_current_palette
 
-    expect(KeystoneUi::Current.accent_override).to eq(:emerald)
+    expect(controller2.keystone_palette_css).to include("--color-accent-500: #10b981")
   end
 
   it "reloads from DB when session cache is stale" do
@@ -121,8 +110,8 @@ RSpec.describe KeystoneColors::CurrentPalette do
     pref.update!(accent: "violet", surface: "zinc")
     controller.set_current_palette
 
-    expect(KeystoneUi::Current.accent_override).to eq(:violet)
-    expect(KeystoneUi::Current.surface_override).to eq(:zinc)
+    css = controller.keystone_palette_css
+    expect(css).to include("--color-accent-500: #8b5cf6")
     expect(session[:keystone_palette][:accent]).to eq("violet")
   end
 end

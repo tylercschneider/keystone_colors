@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/concern"
+
 module KeystoneColors
   module CurrentPalette
     extend ActiveSupport::Concern
@@ -11,14 +13,14 @@ module KeystoneColors
       cached = session[:keystone_palette]
 
       if cached && !stale_cache?(owner, cached)
-        apply_overrides(cached[:accent], cached[:surface])
+        build_palette_css(cached[:accent], cached[:surface])
         return
       end
 
       preference = KeystoneColors::ThemePreference.find_by(owner: owner)
       return unless preference
 
-      apply_overrides(preference.accent, preference.surface)
+      build_palette_css(preference.accent, preference.surface)
       session[:keystone_palette] = {
         accent: preference.accent,
         surface: preference.surface,
@@ -26,11 +28,21 @@ module KeystoneColors
       }
     end
 
+    def keystone_palette_css
+      @keystone_palette_css
+    end
+
     private
 
-    def apply_overrides(accent, surface)
-      KeystoneUi::Current.accent_override = accent.to_sym
-      KeystoneUi::Current.surface_override = surface.to_sym
+    def build_palette_css(accent, surface)
+      accent_shades = KeystoneColors::Palettes.accent(accent)
+      surface_shades = KeystoneColors::Palettes.surface(surface)
+
+      lines = []
+      accent_shades.each { |shade, hex| lines << "  --color-accent-#{shade}: #{hex};" }
+      surface_shades.each { |shade, hex| lines << "  --color-surface-#{shade}: #{hex};" }
+
+      @keystone_palette_css = ":root {\n#{lines.join("\n")}\n}"
     end
 
     def stale_cache?(owner, cached)
