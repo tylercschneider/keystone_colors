@@ -1,7 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["accentPicker", "surfacePicker", "accentLabel", "surfaceLabel", "customRadio", "templateLabel"]
+  static targets = ["accentPicker", "surfacePicker", "customRadio", "templateLabel"]
+
+  connect() {
+    this.accentPickerTarget.addEventListener("change", () => this.customColorChanged())
+    this.surfacePickerTarget.addEventListener("change", () => this.customColorChanged())
+  }
 
   selectTemplate(event) {
     const input = event.currentTarget
@@ -9,19 +14,14 @@ export default class extends Controller {
     const accentHex = input.dataset.accentHex
     const surfaceHex = input.dataset.surfaceHex
 
-    if (this.hasAccentPickerTarget) this.accentPickerTarget.value = accentHex
-    if (this.hasSurfacePickerTarget) this.surfacePickerTarget.value = surfaceHex
-    if (this.hasAccentLabelTarget) this.accentLabelTarget.textContent = accentHex
-    if (this.hasSurfaceLabelTarget) this.surfaceLabelTarget.textContent = surfaceHex
+    this.setPickerValue(this.accentPickerTarget, accentHex)
+    this.setPickerValue(this.surfacePickerTarget, surfaceHex)
 
     this.highlightTemplate(label.dataset.template)
   }
 
   customColorChanged() {
     if (this.hasCustomRadioTarget) this.customRadioTarget.checked = true
-    if (this.hasAccentLabelTarget) this.accentLabelTarget.textContent = this.accentPickerTarget.value
-    if (this.hasSurfaceLabelTarget) this.surfaceLabelTarget.textContent = this.surfacePickerTarget.value
-
     this.highlightTemplate("custom")
   }
 
@@ -36,5 +36,15 @@ export default class extends Controller {
         border.classList.add("border-transparent")
       }
     })
+  }
+
+  setPickerValue(wrapper, hex) {
+    const input = wrapper.querySelector("input[type='hidden']")
+    const swatch = wrapper.querySelector("[data-color-picker-target='swatch']")
+    const hexLabel = wrapper.querySelector("[data-color-picker-target='hexLabel']")
+
+    if (input) input.value = hex
+    if (swatch) swatch.style.backgroundColor = hex
+    if (hexLabel) hexLabel.textContent = hex
   }
 }

@@ -72,22 +72,14 @@
       <% end %>
 
       <%= ui_section(title: "Accent Color", spacing: :sm) do %>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <input type="color" name="theme_preference[accent]" value="<%= current_accent_hex %>"
-            data-action="keystone-colors--theme-settings#customColorChanged"
-            data-keystone-colors--theme-settings-target="accentPicker"
-            style="width: 3rem; height: 3rem; border-radius: 0.5rem; cursor: pointer; border: 0; padding: 0;">
-          <span data-keystone-colors--theme-settings-target="accentLabel"><%= current_accent_hex %></span>
+        <div data-keystone-colors--theme-settings-target="accentPicker">
+          <%= ui_color_picker(name: "theme_preference[accent]", value: current_accent_hex) %>
         </div>
       <% end %>
 
       <%= ui_section(title: "Surface", spacing: :sm) do %>
-        <div style="display: flex; align-items: center; gap: 1rem;">
-          <input type="color" name="theme_preference[surface]" value="<%= current_surface_hex %>"
-            data-action="keystone-colors--theme-settings#customColorChanged"
-            data-keystone-colors--theme-settings-target="surfacePicker"
-            style="width: 3rem; height: 3rem; border-radius: 0.5rem; cursor: pointer; border: 0; padding: 0;">
-          <span data-keystone-colors--theme-settings-target="surfaceLabel"><%= current_surface_hex %></span>
+        <div data-keystone-colors--theme-settings-target="surfacePicker">
+          <%= ui_color_picker(name: "theme_preference[surface]", value: current_surface_hex) %>
         </div>
       <% end %>
 
