@@ -24,7 +24,7 @@
     url: engine_root_path,
     method: :patch,
     scope: :theme_preference,
-    local: true
+    data: { turbo: false }
   ) do |form| %>
     <div class="space-y-8">
       <div>
@@ -35,7 +35,7 @@
             <label class="relative cursor-pointer">
               <input type="radio" name="theme_preference[template_name]" value="<%= name %>"
                 <%= "checked" if @preference.template_name == name.to_s %>
-                class="peer absolute opacity-0 pointer-events-none">
+                class="peer absolute opacity-0">
               <span class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 dark:border-zinc-700 peer-checked:border-blue-500 peer-checked:ring-2 peer-checked:ring-blue-500/20 transition">
                 <span class="w-4 h-4 rounded-full <%= accent_colors[template[:accent].to_s] %>"></span>
                 <span class="w-4 h-4 rounded <%= surface_colors[template[:surface].to_s]&.split&.first %>"></span>
@@ -53,7 +53,7 @@
             <label class="relative cursor-pointer" title="<%= name.capitalize %>">
               <input type="radio" name="theme_preference[accent]" value="<%= name %>"
                 <%= "checked" if @preference.accent == name %>
-                class="peer absolute opacity-0 pointer-events-none">
+                class="peer absolute opacity-0">
               <span class="block w-10 h-10 rounded-full <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
             </label>
           <% end %>
@@ -67,7 +67,7 @@
             <label class="relative cursor-pointer" title="<%= name.capitalize %>">
               <input type="radio" name="theme_preference[surface]" value="<%= name %>"
                 <%= "checked" if @preference.surface == name %>
-                class="peer absolute opacity-0 pointer-events-none">
+                class="peer absolute opacity-0">
               <span class="block w-10 h-10 rounded-lg <%= bg_class %> border-2 border-transparent peer-checked:border-white peer-checked:ring-2 peer-checked:ring-blue-500 transition"></span>
             </label>
           <% end %>
@@ -82,7 +82,7 @@
 
   <% if @preference.persisted? %>
     <div class="mt-6 pt-6 border-t border-gray-200 dark:border-zinc-700">
-      <%= button_to "Reset to Default", engine_root_path, method: :delete %>
+      <%= button_to "Reset to Default", engine_root_path, method: :delete, data: { turbo: false } %>
     </div>
   <% end %>
 <% end %>
