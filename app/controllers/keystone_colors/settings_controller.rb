@@ -6,6 +6,17 @@ module KeystoneColors
       @preference = theme_preference
     end
 
+    def update
+      @preference = theme_preference
+      @preference.assign_attributes(preference_params)
+
+      if @preference.save
+        redirect_to settings_path
+      else
+        render :show, status: :unprocessable_entity
+      end
+    end
+
     private
 
     def current_owner
@@ -14,6 +25,10 @@ module KeystoneColors
 
     def theme_preference
       ThemePreference.find_or_initialize_by(owner: current_owner)
+    end
+
+    def preference_params
+      params.require(:theme_preference).permit(:accent, :surface, :template_name)
     end
   end
 end
