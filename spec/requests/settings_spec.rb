@@ -45,7 +45,7 @@ RSpec.describe "Settings", type: :request do
   describe "PATCH /keystone_colors" do
     it "creates a preference with valid accent and surface" do
       patch "/keystone_colors", params: {
-        theme_preference: { accent: "violet", surface: "zinc" }
+        theme_preference: {accent: "violet", surface: "zinc"}
       }
 
       expect(response).to redirect_to("/keystone_colors/")
@@ -56,7 +56,7 @@ RSpec.describe "Settings", type: :request do
 
     it "saves custom hex colors" do
       patch "/keystone_colors", params: {
-        theme_preference: { accent: "#e11d48", surface: "#44403c" }
+        theme_preference: {accent: "#e11d48", surface: "#44403c"}
       }
 
       expect(response).to redirect_to("/keystone_colors/")
@@ -67,7 +67,7 @@ RSpec.describe "Settings", type: :request do
 
     it "applies a template when template_name is provided" do
       patch "/keystone_colors", params: {
-        theme_preference: { template_name: "forest" }
+        theme_preference: {template_name: "forest"}
       }
 
       expect(response).to redirect_to("/keystone_colors/")
@@ -88,5 +88,4 @@ RSpec.describe "Settings", type: :request do
       expect(KeystoneColors::ThemePreference.find_by(owner: user)).to be_nil
     end
   end
-
 end

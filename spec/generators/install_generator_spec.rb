@@ -37,7 +37,7 @@ RSpec.describe KeystoneColors::Generators::InstallGenerator do
   private
 
   def capture(stream)
-    old = stream == :stdout ? $stdout : $stderr
+    old = (stream == :stdout) ? $stdout : $stderr
     captured = StringIO.new
     if stream == :stdout
       $stdout = captured

@@ -3,7 +3,6 @@
 require_relative "../rails_helper"
 
 RSpec.describe "Color settings", type: :feature do
-
   let(:user) { User.create!(name: "Test") }
 
   before do
@@ -46,5 +45,4 @@ RSpec.describe "Color settings", type: :feature do
 
     expect(page).to have_css("[data-controller='color-picker']", count: 2)
   end
-
 end
