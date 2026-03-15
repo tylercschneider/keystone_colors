@@ -35,7 +35,7 @@ module KeystoneColors
     private
 
     def engine_root_path
-      "#{request.script_name}/"
+      "#{@_engine_mount_path}/"
     end
     helper_method :engine_root_path
 

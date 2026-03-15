@@ -40,6 +40,14 @@ RSpec.describe "Settings", type: :request do
       body = response.body
       expect(body).to include("data-selected-template=\"twilight\"")
     end
+
+    it "does not prefix host app links with the engine mount path" do
+      get "/keystone_colors"
+
+      body = response.body
+      expect(body).to include('href="/settings"')
+      expect(body).not_to include('href="/keystone_colors/settings"')
+    end
   end
 
   describe "PATCH /keystone_colors" do
