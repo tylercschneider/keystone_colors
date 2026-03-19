@@ -9,6 +9,7 @@ RSpec.describe KeystoneColors::Configuration do
     config = KeystoneColors.configuration
 
     expect(config.current_owner_method).to eq(:current_user)
+    expect(config.authentication_method).to eq(:authenticate_user!)
     expect(config.default_template).to eq(:ocean)
     expect(config.default_accent).to eq("blue")
     expect(config.default_surface).to eq("zinc")
