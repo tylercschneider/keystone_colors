@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head><title>Dummy</title></head>
-<body><%= yield %></body>
+<body>
+<nav><%= link_to "Home", main_app.root_path, id: "nav-home" %></nav>
+<%= yield %>
+</body>
 </html>

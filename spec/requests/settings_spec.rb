@@ -88,4 +88,12 @@ RSpec.describe "Settings", type: :request do
       expect(KeystoneColors::ThemePreference.find_by(owner: user)).to be_nil
     end
   end
+
+  describe "form action" do
+    it "uses the engine route helper for the form url" do
+      get "/keystone_colors"
+
+      expect(response.body).to include('action="/keystone_colors/"')
+    end
+  end
 end
