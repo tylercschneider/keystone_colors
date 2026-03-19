@@ -23,7 +23,7 @@
 
 <%= ui_panel(padding: :lg) do %>
   <%= form_with(
-    url: engine_root_path,
+    url: settings_path,
     method: :patch,
     scope: :theme_preference,
     data: { turbo: false, controller: "keystone-colors--theme-settings", selected_template: selected_template }
