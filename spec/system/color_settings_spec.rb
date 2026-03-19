@@ -8,11 +8,13 @@ RSpec.describe "Color settings", type: :feature do
   before do
     uid = user.id
     KeystoneColors::ApplicationController.define_method(:current_user) { User.find(uid) }
+    KeystoneColors::ApplicationController.define_method(:authenticate_user!) { true }
     KeystoneColors::ApplicationController.allow_forgery_protection = false
   end
 
   after do
     KeystoneColors::ApplicationController.remove_method(:current_user)
+    KeystoneColors::ApplicationController.remove_method(:authenticate_user!)
   end
 
   it "selects a theme preset and saves" do
