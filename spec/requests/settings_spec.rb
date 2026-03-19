@@ -8,11 +8,13 @@ RSpec.describe "Settings", type: :request do
   before do
     uid = user.id
     KeystoneColors::ApplicationController.define_method(:current_user) { User.find(uid) }
+    KeystoneColors::ApplicationController.define_method(:authenticate_user!) { true }
     KeystoneColors::ApplicationController.allow_forgery_protection = false
   end
 
   after do
     KeystoneColors::ApplicationController.remove_method(:current_user)
+    KeystoneColors::ApplicationController.remove_method(:authenticate_user!)
   end
 
   describe "GET /keystone_colors" do
@@ -86,6 +88,34 @@ RSpec.describe "Settings", type: :request do
 
       expect(response).to redirect_to("/keystone_colors/")
       expect(KeystoneColors::ThemePreference.find_by(owner: user)).to be_nil
+    end
+  end
+
+  describe "form action" do
+    it "uses the engine route helper for the form url" do
+      get "/keystone_colors"
+
+      expect(response.body).to include('action="/keystone_colors/"')
+    end
+  end
+
+  describe "authentication" do
+    it "rejects unauthenticated requests" do
+      # Configure auth to reject all requests
+      KeystoneColors.configure do |config|
+        config.authentication_method = :reject_all!
+      end
+
+      KeystoneColors::ApplicationController.define_method(:reject_all!) do
+        head :unauthorized
+      end
+
+      get "/keystone_colors"
+
+      expect(response).to have_http_status(:unauthorized)
+
+      KeystoneColors::ApplicationController.remove_method(:reject_all!)
+      KeystoneColors.reset_configuration!
     end
   end
 end
