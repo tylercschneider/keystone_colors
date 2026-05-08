@@ -5,7 +5,7 @@ gemspec
 gem "keystone_ui", github: "tylercschneider/keystone_ui", branch: "main"
 gem "rake"
 gem "rails"
-gem "rspec-rails"
+gem "minitest", "~> 5.0"  # pin to 5.x; minitest 6 removed minitest/mock
 gem "sqlite3"
 gem "capybara"
 gem "rubocop-rails-omakase", require: false
