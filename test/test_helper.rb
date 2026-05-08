@@ -3,9 +3,8 @@
 ENV["RAILS_ENV"] = "test"
 
 require_relative "dummy/config/environment"
-
-require "rspec/rails"
-require "capybara/rspec"
+require "rails/test_help"
+require "minitest/mock"
 
 ActiveRecord::Schema.define do
   create_table :keystone_colors_theme_preferences, force: true do |t|
@@ -23,6 +22,7 @@ end
 
 Rails.application.config.action_dispatch.show_exceptions = :none
 
-RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+class ActiveSupport::TestCase
+  # Run tests in parallel with specified workers
+  # parallelize(workers: :number_of_processors)
 end
