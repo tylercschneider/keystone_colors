@@ -2,8 +2,8 @@
 
 require "spec_helper"
 
-SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].flat_map { |c| [c, c.to_sym] }.freeze
-SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].flat_map { |c| [c, c.to_sym] }.freeze
+SUPPORTED_ACCENTS = %w[blue emerald cyan indigo violet rose].flat_map { |c| [ c, c.to_sym ] }.freeze
+SUPPORTED_SURFACES = %w[zinc slate gray neutral stone].flat_map { |c| [ c, c.to_sym ] }.freeze
 
 RSpec.describe KeystoneColors::Templates do
   it "provides exactly 6 preset templates" do
@@ -53,7 +53,7 @@ RSpec.describe KeystoneColors::Templates do
   end
 
   it "uses distinct accent/surface combinations" do
-    combos = described_class.all.values.map { |t| [t[:accent], t[:surface]] }
+    combos = described_class.all.values.map { |t| [ t[:accent], t[:surface] ] }
     expect(combos.uniq.size).to eq(combos.size)
   end
 end
