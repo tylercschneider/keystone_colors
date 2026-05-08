@@ -8,4 +8,4 @@ gem "rails"
 gem "rspec-rails"
 gem "sqlite3"
 gem "capybara"
-gem "standard"
+gem "rubocop-rails-omakase", require: false

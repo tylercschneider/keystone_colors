@@ -4152,3 +4152,408 @@ Completed 302 Found in 1ms (ActiveRecord: 0.3ms (3 queries, 0 cached) | GC: 0.0m
   [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
   [1m[36mKeystoneColors::ThemePreference Load (0.1ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
   [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[35m (1.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "keystone_colors_theme_preferences"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mDROP TABLE IF EXISTS "users"[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-05-08 02:47:55.246497', '2026-05-08 02:47:55.246499') RETURNING "key"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-05-08 02:47:55.274443', '2026-05-08 02:47:55.274444') RETURNING "key"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "keystone_colors_theme_preferences" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "accent" varchar NOT NULL, "surface" varchar NOT NULL, "template_name" varchar, "owner_type" varchar NOT NULL, "owner_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE INDEX "index_keystone_colors_theme_preferences_on_owner" ON "keystone_colors_theme_preferences" ("owner_type", "owner_id")[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.0ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+  [1m[36mActiveRecord::InternalMetadata Create (0.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'test', '2026-05-08 02:47:55.284103', '2026-05-08 02:47:55.284104') RETURNING "key"[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.308813"], ["updated_at", "2026-05-08 02:47:55.308813"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.313265"], ["updated_at", "2026-05-08 02:47:55.313265"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Pluck (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences"."updated_at" FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.316681"], ["updated_at", "2026-05-08 02:47:55.316681"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Update (0.1ms)[0m  [1m[33mUPDATE "keystone_colors_theme_preferences" SET "accent" = ?, "surface" = ?, "updated_at" = ? WHERE "keystone_colors_theme_preferences"."id" = ?[0m  [["accent", "violet"], ["surface", "zinc"], ["updated_at", "2026-05-08 02:47:55.316994"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Pluck (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences"."updated_at" FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "#e11d48"], ["surface", "#44403c"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.318043"], ["updated_at", "2026-05-08 02:47:55.318043"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "blue"], ["surface", "slate"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.330302"], ["updated_at", "2026-05-08 02:47:55.330302"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.0ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "blue"], ["surface", "slate"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.334104"], ["updated_at", "2026-05-08 02:47:55.334104"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Update (0.1ms)[0m  [1m[33mUPDATE "keystone_colors_theme_preferences" SET "accent" = ?, "surface" = ?, "template_name" = ?, "updated_at" = ? WHERE "keystone_colors_theme_preferences"."id" = ?[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", "forest"], ["updated_at", "2026-05-08 02:47:55.334395"], ["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 17.5ms | GC: 4.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 17.7ms | GC: 4.2ms)
+Completed 200 OK in 21ms (Views: 19.1ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 4.2ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 10.6ms | GC: 8.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 9.2ms)
+Completed 200 OK in 16ms (Views: 12.9ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 12.7ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "violet"], ["surface", "zinc"], ["template_name", "twilight"], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.386592"], ["updated_at", "2026-05-08 02:47:55.386592"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.4ms | GC: 0.2ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.5ms | GC: 0.2ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms (2 queries, 0 cached) | GC: 0.2ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#update as HTML
+  Parameters: {"theme_preference"=>{"accent"=>"violet", "surface"=>"zinc"}}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "violet"], ["surface", "zinc"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.395366"], ["updated_at", "2026-05-08 02:47:55.395366"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#update as HTML
+  Parameters: {"theme_preference"=>{"accent"=>"#e11d48", "surface"=>"#44403c"}}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "#e11d48"], ["surface", "#44403c"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.400146"], ["updated_at", "2026-05-08 02:47:55.400146"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.1ms)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started PATCH "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#update as HTML
+  Parameters: {"theme_preference"=>{"template_name"=>"forest"}}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", "forest"], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.402408"], ["updated_at", "2026-05-08 02:47:55.402408"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "violet"], ["surface", "zinc"], ["template_name", nil], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.403726"], ["updated_at", "2026-05-08 02:47:55.403726"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started DELETE "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#destroy as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Destroy (0.1ms)[0m  [1m[31mDELETE FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."id" = ?[0m  [["id", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (3 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+Filter chain halted as #<Proc:0x0000000127630ec0 /Users/dyb/projects/gems/keystone_colors/app/controllers/keystone_colors/application_controller.rb:5> rendered or redirected
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+Started PATCH "/keystone_colors/" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#update as HTML
+  Parameters: {"theme_preference"=>{"template_name"=>"forest", "accent"=>"#3b82f6", "surface"=>"#71717a"}}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "emerald"], ["surface", "stone"], ["template_name", "forest"], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.418466"], ["updated_at", "2026-05-08 02:47:55.418466"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms (3 queries, 0 cached) | GC: 0.0ms)
+Started GET "/keystone_colors/" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 3.8ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 200 OK in 4ms (Views: 3.9ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.1ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.2ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+Started PATCH "/keystone_colors/" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#update as HTML
+  Parameters: {"theme_preference"=>{"template_name"=>"default", "accent"=>"#3b82f6", "surface"=>"#71717a"}}
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mKeystoneColors::ThemePreference Create (0.1ms)[0m  [1m[32mINSERT INTO "keystone_colors_theme_preferences" ("accent", "surface", "template_name", "owner_type", "owner_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING "id"[0m  [["accent", "blue"], ["surface", "zinc"], ["template_name", "default"], ["owner_type", "User"], ["owner_id", 1], ["created_at", "2026-05-08 02:47:55.432846"], ["updated_at", "2026-05-08 02:47:55.432846"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/keystone_colors/
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms (3 queries, 0 cached) | GC: 0.0ms)
+Started GET "/keystone_colors/" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.3ms | GC: 0.0ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_id" = ? AND "keystone_colors_theme_preferences"."owner_type" = ? LIMIT ?[0m  [["owner_id", 1], ["owner_type", "User"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mBEGIN deferred TRANSACTION[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("name") VALUES (?) RETURNING "id"[0m  [["name", "Test"]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/keystone_colors" for 127.0.0.1 at 2026-05-07 22:47:55 -0400
+Processing by KeystoneColors::SettingsController#show as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mKeystoneColors::ThemePreference Load (0.0ms)[0m  [1m[34mSELECT "keystone_colors_theme_preferences".* FROM "keystone_colors_theme_preferences" WHERE "keystone_colors_theme_preferences"."owner_type" = ? AND "keystone_colors_theme_preferences"."owner_id" = ? LIMIT ?[0m  [["owner_type", "User"], ["owner_id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application
+  Rendered /Users/dyb/projects/gems/keystone_colors/app/views/keystone_colors/settings/show.html.erb within layouts/application (Duration: 2.0ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 2.0ms | GC: 0.0ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms (2 queries, 0 cached) | GC: 0.0ms)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mROLLBACK TRANSACTION[0m

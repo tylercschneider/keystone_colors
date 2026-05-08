@@ -36,7 +36,7 @@ RSpec.describe KeystoneColors::Palettes do
     it "generates 11 shades including 950 from a hex color" do
       shades = described_class.generate_shades("#3b82f6")
 
-      expect(shades.keys).to eq([50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950])
+      expect(shades.keys).to eq([ 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950 ])
       expect(shades[500]).to eq("#3b82f6")
       shades.each_value { |hex| expect(hex).to match(/\A#[0-9a-f]{6}\z/) }
     end

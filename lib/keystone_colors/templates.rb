@@ -46,7 +46,7 @@ module KeystoneColors
     end
 
     def self.names
-      [:default] + PRESETS.keys
+      [ :default ] + PRESETS.keys
     end
 
     def self.default_template
