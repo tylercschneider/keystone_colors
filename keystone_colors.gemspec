@@ -11,8 +11,11 @@ Gem::Specification.new do |spec|
   spec.license = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/tylercschneider/keystone_colors"
-  spec.metadata["changelog_uri"] = "https://github.com/tylercschneider/keystone_colors/blob/main/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = spec.homepage
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/main/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
+  spec.metadata["documentation_uri"] = "#{spec.homepage}#readme"
+  spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.required_ruby_version = ">= 3.1.0"
 
